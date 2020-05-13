@@ -8,7 +8,9 @@ Welcome to the documentation for UTK's Investigation of Samvera!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
+   :glob:
+
+   contents/*
 
 
 
