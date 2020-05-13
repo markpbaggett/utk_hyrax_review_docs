@@ -116,6 +116,7 @@ Example 1: Knoxville Garden Slide
 This is a sample MODS record from Knoxville Garden Slides in Islandora 7.
 
 .. code-block:: xml
+    :linenos:
 
     <?xml version="1.0" encoding="UTF-8"?>
     <mods xmlns="http://www.loc.gov/mods/v3"
@@ -204,9 +205,12 @@ This is a sample MODS record from Knoxville Garden Slides in Islandora 7.
                         xlink:href="http://rightsstatements.org/vocab/CNE/1.0/">Copyright Not Evaluated</accessCondition>
     </mods>
 
-.. code-block:: rdf
+Here is a potential mapping of that same record as TTL using Hyrax MAP 2.0 out-of-the-box:
 
-    @prefix fedoraObject <http://[LocalFedoraRepository]/>.
+.. code-block:: turtle
+    :linenos:
+
+    @prefix fedoraObject: <http://[LocalFedoraRepository]/>.
     @prefix dct: <http://purl.org/dc/terms/> .
     @prefix dce: <http://purl.org/dc/elements/1.1/> .
     @prefix edm: <http://www.europeana.eu/schemas/edm/> .
@@ -215,9 +219,106 @@ This is a sample MODS record from Knoxville Garden Slides in Islandora 7.
     @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
     @prefix mrel: <http://id.loc.gov/vocabulary/relators/> .
 
-    fedoraObject:tq/57/nr/06/tq57nr067
-        a fedora:Container, ldp:RDFSource, ldp:Container, fedora:Resource;
-        dct:identifier "0012_000463_000214", "knoxgardens:115", "Slide 1", "Film  96", "record_spc_4489";
-        dct:title "Tulip Tree";
-        dce:description "Photograph slide of the Tennessee state tree, the tulip tree";
-        dct:created "1930-1939";
+    <fedoraObject:tq/57/nr/06/tq57nr067>
+        dct:title "Tulip Tree" ;
+        dct:identifier "0012_000463_000214", "knoxgardens:115", "Slide 1", "Film  96", "record_spc_4489" ;
+        dce:description "Photograph slide of the Tennessee state tree, the tulip tree" ;
+        dct:created "1930-1939", "1930", "1939" ;
+        dce:creator "Unknown" ;
+        dce:subject "Photography of gardens", "Gardens, American", "Liriodendron tulipifera", "Flowering trees", "Knoxville (Tenn.)" ;
+        dct:type "still image" ;
+        rdfs:seeAlso <https://n2t.net/ark:/87290/v88w3bgf> ;
+        edm:rights <http://rightsstatements.org/vocab/CNE/1.0/> .
+
+So, here is that same MODS record demonstrating what we would lose:
+
+.. code-block:: xml
+    :emphasize-lines: 24-28, 31-34, 36-37, 40-41, 44-45, 48-49, 52-53, 55-57, 59 - 64, 66-71, 73 - 83
+    :linenos:
+
+    <?xml version="1.0" encoding="UTF-8"?>
+    <mods xmlns="http://www.loc.gov/mods/v3"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:xs="http://www.w3.org/2001/XMLSchema"
+          xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-5.xsd">
+       <identifier type="local">0012_000463_000214</identifier>
+       <identifier type="pid">knoxgardens:115</identifier>
+       <identifier type="slide number">Slide 1</identifier>
+       <identifier type="film number">Film  96</identifier>
+       <identifier type="spc">record_spc_4489</identifier>
+       <titleInfo>
+          <title>Tulip Tree</title>
+       </titleInfo>
+       <abstract>Photograph slide of the Tennessee state tree, the tulip tree</abstract>
+       <originInfo>
+          <dateCreated qualifier="inferred">1930-1939</dateCreated>
+          <dateCreated encoding="edtf"
+                       point="start"
+                       qualifier="inferred"
+                       keyDate="yes">1930</dateCreated>
+          <dateCreated encoding="edtf" point="end" qualifier="inferred">1939</dateCreated>
+       </originInfo>
+       <physicalDescription>
+          <form authority="aat" valueURI="http://vocab.getty.edu/aat/300134977">lantern slides</form>
+          <extent>3 1/4 x 5 inches</extent>
+          <internetMediaType>image/jp2</internetMediaType>
+       </physicalDescription>
+       <name>
+          <namePart>Unknown</namePart>
+          <role>
+             <roleTerm authority="marcrelator"
+                       valueURI="http://id.loc.gov/vocabulary/relators/pht">Photographer</roleTerm>
+          </role>
+       </name>
+       <subject authority="lcsh"
+                valueURI="http://id.loc.gov/authorities/subjects/sh85101348">
+          <topic>Photography of gardens</topic>
+       </subject>
+       <subject authority="lcsh"
+                valueURI="http://id.loc.gov/authorities/subjects/sh85053123">
+          <topic>Gardens, American</topic>
+       </subject>
+       <subject authority="lcsh"
+                valueURI="http://id.loc.gov/authorities/subjects/sh85077428">
+          <topic>Liriodendron tulipifera</topic>
+       </subject>
+       <subject authority="lcsh"
+                valueURI="http://id.loc.gov/authorities/subjects/sh85049328">
+          <topic>Flowering trees</topic>
+       </subject>
+       <subject authority="naf"
+                valueURI="http://id.loc.gov/authorities/names/n79109786">
+          <geographic>Knoxville (Tenn.)</geographic>
+          <cartographics>
+             <coordinates>35.96064, -83.92074</coordinates>
+          </cartographics>
+       </subject>
+       <note>Mrs. A. C. Bruner donated this collection to the University of Tennessee. Creation dates were inferred from the dates associated with the archival collection and the activity dates of the Jim Thompson Company.</note>
+       <relatedItem displayLabel="Project" type="host">
+          <titleInfo>
+             <title>Knoxville Garden Slides</title>
+          </titleInfo>
+       </relatedItem>
+       <typeOfResource>still image</typeOfResource>
+       <relatedItem displayLabel="Collection" type="host">
+          <titleInfo>
+             <title>Knoxville Gardens Slides</title>
+          </titleInfo>
+          <identifier>MS.1324</identifier>
+          <location>
+             <url>https://n2t.net/ark:/87290/v88w3bgf</url>
+          </location>
+       </relatedItem>
+       <location>
+          <physicalLocation valueURI="http://id.loc.gov/authorities/names/no2014027633">University of Tennessee, Knoxville. Special Collections</physicalLocation>
+       </location>
+       <recordInfo>
+          <recordContentSource valueURI="http://id.loc.gov/authorities/names/n87808088">University of Tennessee, Knoxville. Libraries</recordContentSource>
+          <languageOfCataloging>
+             <languageTerm type="text" authority="iso639-2b">English</languageTerm>
+          </languageOfCataloging>
+       </recordInfo>
+       <accessCondition type="use and reproduction"
+                        xlink:href="http://rightsstatements.org/vocab/CNE/1.0/">Copyright Not Evaluated</accessCondition>
+    </mods>
