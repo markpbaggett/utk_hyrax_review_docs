@@ -117,6 +117,8 @@ This is a sample MODS record from Knoxville Garden Slides in Islandora 7.
 
 .. code-block:: xml
     :linenos:
+    :caption: knoxgardens:115.xml
+    :name: knoxgardens:115.xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <mods xmlns="http://www.loc.gov/mods/v3"
@@ -209,6 +211,9 @@ Here is a potential mapping of that same record as TTL using Hyrax MAP 2.0 out-o
 
 .. code-block:: turtle
     :linenos:
+    :caption: TTL representation of knoxgardens:115.xml mapping to Hyrax MAP 2.0 Out-of-the-Box
+    :name: TTL representation of knoxgardens:115.xml mapping to Hyrax MAP 2.0 Out-of-the-Box
+
 
     @prefix fedoraObject: <http://[LocalFedoraRepository]/>.
     @prefix dct: <http://purl.org/dc/terms/> .
@@ -230,11 +235,13 @@ Here is a potential mapping of that same record as TTL using Hyrax MAP 2.0 out-o
         rdfs:seeAlso <https://n2t.net/ark:/87290/v88w3bgf> ;
         edm:rights <http://rightsstatements.org/vocab/CNE/1.0/> .
 
-So, here is that same MODS record demonstrating what we would lose:
+Here is the same MODS record highlighting the metadata that would be lost following this mapping:
 
 .. code-block:: xml
     :emphasize-lines: 24-28, 31-34, 36-37, 40-41, 44-45, 48-49, 52-53, 55-57, 59 - 64, 66-71, 73 - 83
     :linenos:
+    :caption: Illustrating lost data from knoxgardens:115.xml
+    :name: Illustrating lost data from knoxgardens:115.xml
 
     <?xml version="1.0" encoding="UTF-8"?>
     <mods xmlns="http://www.loc.gov/mods/v3"
@@ -322,3 +329,43 @@ So, here is that same MODS record demonstrating what we would lose:
        <accessCondition type="use and reproduction"
                         xlink:href="http://rightsstatements.org/vocab/CNE/1.0/">Copyright Not Evaluated</accessCondition>
     </mods>
+
+Here is an alternative mapping based on the Direct Mappings Option from the
+`Final Recommendation of the Samvera MODS to RDF Description Subgroup Report <https://wiki.duraspace.org/download/attachments/87460857/MODS-RDF-Mapping-Recommendations_SMIG_v1_2019-01.pdf?api=v2>`_:
+
+.. code-block:: turtle
+    :linenos:
+    :caption: TTL representation of knoxgardens:115.xml mapping to the Samvera MODS to RDF Description Subgroup's Direct Mapping
+    :name: TTL representation of knoxgardens:115.xml mapping to the Samvera MODS to RDF Description Subgroup's Direct Mapping
+
+    @prefix fedoraObject: <http://[LocalFedoraRepository]/> .
+    @prefix identifiers: <http://id.loc.gov/vocabulary/identifiers> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix edm: <http://www.europeana.eu/schemas/edm/> .
+    @prefix rdau: <http://rdaregistry.info/Elements/u/#> .
+    @prefix dce: <http://purl.org/dc/elements/1.1/> .
+    @prefix relators: <http://id.loc.gov/vocabulary/relators> .
+    @prefix bf: <http://id.loc.gov/ontologies/bibframe/> .
+
+    <fedoraObject:tq/57/nr/06/tq57nr067>
+        identifiers:local "0012_000463_000214", "record_spc_4489", "Slide 1", "Film 96" ;
+        dcterms:identifier "knoxgardens:115" ;
+        dcterms:title "Tulip Tree" ;
+        dcterms:abstract "Photograph slide of the Tennessee state tree, the tulip tree" ;
+        dcterms:created "1930-1939", "1930", "1939" ;
+        skos:note "Date: Inferred" ;
+        edm:hastype <http://vocab.getty.edu/aat/300134977> ;
+        rdau:extent "3 1/4 x 5 inches" ;
+        dce:format "image/jp2" ;
+        relators:pht "Unknown" ;
+        dce:subject <http://id.loc.gov/authorities/subjects/sh85101348>, <http://id.loc.gov/authorities/subjects/sh85053123>, <http://id.loc.gov/authorities/subjects/sh85077428>, <http://id.loc.gov/authorities/subjects/sh85049328>;
+        dce:coverage <http://id.loc.gov/authorities/names/n79109786>, "35.96064, -83.92074" ;
+        skos:note "Mrs. A. C. Bruner donated this collection to the University of Tennessee. Creation dates were inferred from the dates associated with the archival collection and the activity dates of the Jim Thompson Company." ;
+        relators:rps <http://id.loc.gov/authorities/names/no2014027633> ;
+        bf:physicalLocation "University of Tennessee, Knoxville. Special Collections" ;
+        edm:rights <http://rightsstatements.org/vocab/CNE/1.0/> .
+
+
+
+`@TODO`: dce:coverage (cartographis), dcterms:created (inferred dates), dce:subjects. relatedItem project, skipped all relatedItems for now, skipped record info
