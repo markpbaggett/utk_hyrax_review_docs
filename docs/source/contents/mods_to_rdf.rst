@@ -368,4 +368,114 @@ Here is an alternative mapping based on the Direct Mappings Option from the
 
 
 
-`@TODO`: dce:coverage (cartographis), dcterms:created (inferred dates), dce:subjects. relatedItem project, skipped all relatedItems for now, skipped record info
+`@TODO`: dce:coverage (cartographics), dcterms:created (inferred dates), dce:subjects. relatedItem project, skipped all relatedItems for now, skipped record info
+
+Finally, here is an alternative mapping based on the Minted Object Mapping (Complex Option) described in the
+`Final Recommendation of the Samvera MODS to RDF Description Subgroup Report <https://wiki.duraspace.org/download/attachments/87460857/MODS-RDF-Mapping-Recommendations_SMIG_v1_2019-01.pdf?api=v2>`_:.
+
+.. code-block:: turtle
+    :linenos:
+    :caption: TTL representation of knoxgardens:115.xml mapping to the Samvera MODS to RDF Description Subgroup's Minted Object Mapping with associated Objects
+    :name: TTL representation of knoxgardens:115.xml mapping to the Samvera MODS to RDF Description Subgroup's Minted Object Mapping with associated Objects
+
+    @prefix fedoraObject: <http://[LocalFedoraRepository]/> .
+    @prefix utkevents: <http://[address-to-triplestore]/events/> .
+    @prefix utktitles: <http://[address-to-triplestore]/titles/> .
+    @prefix utksubjects: <http://[address-to-triplestore]/subjects/> .
+    @prefix utkspatial: <http://[address-to-triplestore]/spatial/> .
+    @prefix utknotes: <http://[address-to-triplestore]/notes/> .
+    @prefix utkphysicalcollections: <http://[address-to-triplestore]/physicalcollections/> .
+    @prefix rdfs: <https://www.w3.org/TR/rdf-schema/> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
+    @prefix bf: <http://id.loc.gov/ontologies/bibframe/> .
+    @prefix relators: <http://id.loc.gov/vocabulary/relators> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix geojson: <https://purl.org/geojson/vocab#> .
+    @prefix pcdm: <http://pcdm.org/models#> .
+    @prefix dbo: <http://dbpedia.org/ontology/> .
+
+    <fedoraObject:tq/57/nr/06/tq57nr067>
+        dce:title <utktitles:1> ;
+        identifiers:local "0012_000463_000214", "record_spc_4489", "Slide 1", "Film 96" ;
+        dcterms:identifier "knoxgardens:115" ;
+        dcterms:abstract "Photograph slide of the Tennessee state tree, the tulip tree" ;
+        bf:provisionActivity <utkevents:1>, <utkevents:2>, <utkevents:3> ;
+        edm:hastype <http://vocab.getty.edu/aat/300134977> ;
+        rdau:extent "3 1/4 x 5 inches" ;
+        dce:format "image/jp2" ;
+        relators:pht <utknames:1> ;
+        dcterms:subject <utksubjects:1>, <utksubjects:2>, <utksubjects:3>, <utksubjects:4> ;
+        dcterms:spatial <utkspatial:1> ;
+        bf:Note <utknotes:1> ;
+        pcdm:memberOf <fedoraObject:jk/88/99/adklasd908ads> ;
+        relators:rps <http://id.loc.gov/authorities/names/no2014027633> ;
+        bf:physicalLocation "University of Tennessee, Knoxville. Special Collections" ;
+        edm:rights <http://rightsstatements.org/vocab/CNE/1.0/> .
+
+    <utktitles:1>
+        a bf:title ;
+        rdfs:label "Tulip Tree" .
+
+    <utkevents:1>
+        a bf:provisionActivity ;
+        dcterms:created "1930" ;
+        skos:note "Date: Inferred" .
+
+    <utkevents:2>
+        a bf:provisionActivity ;
+        dcterms:created "1939" ;
+        skos:note "Date: Inferred" .
+
+    <utkevents:3>
+        a bf:provisionActivity ;
+        dcterms:created "1930-1939" ;
+        skos:note "Date: Inferred" .
+
+    <utknames:1>
+        a foaf:person ;
+        foaf:name "Unknown" .
+
+    <utksubjects:1>
+        a skos:Concept ;
+        rdf:label "Photography of gardens";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
+
+    <utksubjects:2>
+        a skos:Concept ;
+        rdf:label "Gardens, American";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
+
+    <utksubjects:3>
+        a skos:Concept ;
+        rdf:label "Liriodendron tulipifera";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85077428.html> .
+
+    <utksubjects:4>
+        a skos:Concept ;
+        rdf:label "Flowering trees";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85049328.tml> .
+
+    <utkspatial:1>
+        a edm:Place ;
+        rdfs:label "Knoxville (Tenn.)" ;
+        owl:sameAs <http://id.loc.gov/authorities/names/n79109786> ;
+        geojson:coordinates "35.96064, -83.92074" .
+
+    <utknotes:1>
+        a bf:Note ;
+        rdfs:label "Mrs. A. C. Bruner donated this collection to the University of Tennessee. Creation dates were inferred from the dates associated with the archival collection and the activity dates of the Jim Thompson Company." .
+
+    <fedoraObject:jk/88/99/adklasd908ads>
+        a pcdm:Collection ;
+        rdfs:label "Knoxville Gardens Slides" .
+
+    <utkphysicalcollections:1>
+        a dcmitype:Collection ;
+        rdfs:label "Knoxville Gardens Slides" ;
+        owl:sameAs <https://n2t.net/ark:/87290/v88w3bgf> .
+
+
+
+`@TODO` or talkabout: provision activities, name modeling, project, physicalcollections:1 owl:sameAs, skipped recordInfo.
+
