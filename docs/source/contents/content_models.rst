@@ -50,6 +50,10 @@ From the PCDM wiki:
 
     As the community migrates to Fedora 4, much of our metadata is migrating to RDF. This model encourages linked data best practices, such as using URIs to identify all resources, using widely-used vocabularies where possible, and subclassing existing classes and properties when creating new terms.
 
+Here is an overview of a Generic Work in Hyrax Modeled with PCDM:
+
+.. image:: ../images/pcdm_example.png
+
 Here is a description of the `Knoxville Garden Slides` Collection and `knoxgardens:115.xml` modeled as rdf using PCDM in a Hyrax system.
 
 .. code-block:: turtle
@@ -103,3 +107,164 @@ Here is a description of the `Knoxville Garden Slides` Collection and `knoxgarde
         pcdm:hasMember <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328> .
 
 Here is a representation of the "Knoxville Garden Slides" Collection object:
+
+.. code-block:: turtle
+    :linenos:
+    :caption: Knoxville Garden Slides Collection Object with Minimal Descriptive Metadata modeled as RDF
+    :name: Knoxville Garden Slides Collection Object with Minimal Descriptive Metadata modeled as RDF
+
+    @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix hydra:  <http://projecthydra.org/works/models#> .
+    @prefix webacl:  <http://www.w3.org/ns/auth/acl#> .
+    @prefix dct:  <http://purl.org/dc/terms/> .
+    @prefix fedora:  <info:fedora/fedora-system:def/model#> .
+    @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+    @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+    @prefix pcdm:  <http://pcdm.org/models#> .
+    @prefix relators:  <http://id.loc.gov/vocabulary/relators/> .
+    @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+    @prefix fedoraconfig:  <http://fedora.info/definitions/v4/config#> .
+    @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+    @prefix test:  <info:fedora/test/> .
+    @prefix schema:  <http://schema.org/> .
+    @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+    @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+    @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+    <http://localhost:8984/rest/dev/gm/80/hv/32/gm80hv32k>
+            rdf:type pcdm:Collection ;
+            rdf:type fedora:Container ;
+            rdf:type hydra:Collection ;
+            rdf:type fedora:Resource ;
+            fedora:lastModifiedBy "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:hasModel "Collection"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:createdBy "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            relators:dpt "mbagget1@utk.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:created "2020-05-12T21:56:09.247Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            fedora:lastModified "2020-05-12T21:56:26.349Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            webacl:accessControl <http://localhost:8984/rest/dev/3c/7a/9a/39/3c7a9a39-1eee-49b2-a78a-06bcf57adcc6> ;
+            schema:additionalType "gid://ucla2019/hyrax-collectiontype/1"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            dct:title "Knoxville Garden Slides"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            dc:description "This collection of hand-colored lantern slides dates from the late 1920s and early 1930s. The slides depict ornamental gardens in the Knoxville, Tennessee, area and feature a variety of garden styles, plants, flowers, and foliage."^^<http://www.w3.org/2001/XMLSchema#string> ;
+            rdf:type ldp:RDFSource ;
+            rdf:type ldp:Container ;
+            fedora:writable "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+            fedora:hasParent <http://localhost:8984/rest/dev> .
+
+Here is the TIF that is associated with knoxgardens:115 modeled as RDF:
+
+.. code-block:: turtle
+    :linenos:
+    :caption: The TIF belonging to knoxgardens:115 modeled as RDF in Fedora
+    :name: The TIF belonging to knoxgardens:115 modeled as RDF in Fedora
+
+    @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix hydra:  <http://projecthydra.org/works/models#> .
+    @prefix webacl:  <http://www.w3.org/ns/auth/acl#> .
+    @prefix dct:  <http://purl.org/dc/terms/> .
+    @prefix fedora:  <info:fedora/fedora-system:def/model#> .
+    @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+    @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+    @prefix pcdm:  <http://pcdm.org/models#> .
+    @prefix relators:  <http://id.loc.gov/vocabulary/relators/> .
+    @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+    @prefix fedoraconfig:  <http://fedora.info/definitions/v4/config#> .
+    @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+    @prefix test:  <info:fedora/test/> .
+    @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+    @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+    @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+    <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328>
+            rdf:type fedora:Container ;
+            rdf:type hydra:FileSet ;
+            rdf:type fedora:Resource ;
+            rdf:type pcdm:Object ;
+            fedora:lastModifiedBy "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:downloadFilename "OBJ Datastream.tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:hasModel "FileSet"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            dct:dateSubmitted "2020-05-12T21:59:21.995548515+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            fedora:createdBy "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            relators:dpt "mbagget1@utk.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:created "2020-05-12T21:59:21.831Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            fedora:lastModified "2020-05-12T21:59:26.063Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            dct:modified "2020-05-12T21:59:21.995548515+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            dc:creator "mbagget1@utk.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            webacl:accessControl <http://localhost:8984/rest/dev/4f/9f/76/e5/4f9f76e5-8073-4278-b746-038c57ada57d> ;
+            dct:title "OBJ Datastream.tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            rdf:type ldp:RDFSource ;
+            rdf:type ldp:Container ;
+            fedora:writable "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+            fedora:hasParent <http://localhost:8984/rest/dev> ;
+            ldp:contains <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files> ;
+            pcdm:hasFile <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files/68a58b55-6ccd-401f-9c77-7e341e1c6748> .
+
+Now the actual file:
+
+.. code-block:: turtle
+    :linenos:
+    :caption: The Actual File
+    :name: The Actual File
+
+    @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+    @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+    @prefix pcdm:  <http://pcdm.org/models#> .
+    @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+    @prefix pcdmuse:  <http://pcdm.org/use#> .
+    @prefix fedoraconfig:  <http://fedora.info/definitions/v4/config#> .
+    @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+    @prefix test:  <info:fedora/test/> .
+    @prefix hydramix:  <http://projecthydra.org/ns/mix/> .
+    @prefix nepomuk:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+    @prefix iana:  <http://www.iana.org/assignments/relation/> .
+    @prefix exif:  <http://www.w3.org/2003/12/exif/ns#> .
+    @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+    @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+    @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+    <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files/68a58b55-6ccd-401f-9c77-7e341e1c6748>
+            rdf:type ldp:NonRDFSource ;
+            rdf:type pcdm:File ;
+            rdf:type pcdmuse:OriginalFile ;
+            rdf:type fedora:Binary ;
+            rdf:type fedora:Resource ;
+            fedora:lastModifiedBy "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            premis:hasFormatName "TIFF EXIF"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:width "2106"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:fileSize "17765536"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            premis:hasSize "17765536"^^<http://www.w3.org/2001/XMLSchema#long> ;
+            exif:orientation "normal*"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:createdBy "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:created "2020-05-17T13:20:03.252Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            premis:hasMessageDigest <urn:sha1:3fe991ef65c061f65233cd7eb9353b8ca109ea2c> ;
+            hydramix:colorProfileVersion "2.1.0"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:filename "OBJ_Datastream.tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            exif:software "Adobe Photoshop CS2 Windows"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            hydramix:colorProfileName "Adobe RGB (1998)"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            nepomuk:hashValue "99d14ee8c28517e10c637e0e0a675b94"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:dateCreated "2010:01:28 17:33:15-05:00"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            exif:colorSpace "RGB"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:hasMimeType "image/tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:lastModified "2020-05-17T13:20:07.078Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            ebucore:height "2808"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            hydramix:compressionScheme "Uncompressed"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:dateModified "2010:01:28 17:38:53"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            rdf:type ldp:NonRDFSource ;
+            fedora:writable "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+            iana:describedby <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files/68a58b55-6ccd-401f-9c77-7e341e1c6748/fcr:metadata> ;
+            fedora:hasParent <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files> ;
+            fedora:hasFixityService <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files/68a58b55-6ccd-401f-9c77-7e341e1c6748/fcr:fixity> ;
+            fedora:hasVersions <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328/files/68a58b55-6ccd-401f-9c77-7e341e1c6748/fcr:versions> .
