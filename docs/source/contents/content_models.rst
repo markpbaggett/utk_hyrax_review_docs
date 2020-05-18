@@ -50,16 +50,22 @@ From the PCDM wiki:
 
     As the community migrates to Fedora 4, much of our metadata is migrating to RDF. This model encourages linked data best practices, such as using URIs to identify all resources, using widely-used vocabularies where possible, and subclassing existing classes and properties when creating new terms.
 
-Here is an overview of a Generic Work in Hyrax Modeled with PCDM:
+Hydra::Works implements PCDM like this:
+
+.. image:: ../images/hydra-works.png
+
+Using one of our objects, here is an overview of how this work and its collection is modeled with PCDM in Hyrax:
 
 .. image:: ../images/pcdm_example.png
 
-Here is a description of the `Knoxville Garden Slides` Collection and `knoxgardens:115.xml` modeled as rdf using PCDM in a Hyrax system.
+The following ttl shows how the object `knoxgardens:115` from our Fedora 3.8 instance looks migrated to Hyrax and its
+relationship with its parent collection and its preservation Tiff.
 
 .. code-block:: turtle
     :linenos:
     :caption: knoxgardens:115 in Hyrax as ttl and using PCDM, highlight structural metadata, with only core descriptive metadata
     :name:  knoxgardens:115 in Hyrax as ttl and using PCDM with only core metadata
+    :emphasize-lines: 16-17, 24, 44
 
     @prefix pcdm:  <http://pcdm.org/models#> .
     @prefix dct: <http://purl.org/dc/terms/> .
@@ -106,12 +112,13 @@ Here is a description of the `Knoxville Garden Slides` Collection and `knoxgarde
         ldp:contains <http://localhost:8984/rest/dev/pr/76/f3/40/pr76f340k/list_source> ;
         pcdm:hasMember <http://localhost:8984/rest/dev/9p/29/09/32/9p2909328> .
 
-Here is a representation of the "Knoxville Garden Slides" Collection object:
+Here is a ttl representation of the "Knoxville Garden Slides" Collection object:
 
 .. code-block:: turtle
     :linenos:
     :caption: Knoxville Garden Slides Collection Object with Minimal Descriptive Metadata modeled as RDF
     :name: Knoxville Garden Slides Collection Object with Minimal Descriptive Metadata modeled as RDF
+    :emphasize-lines: 24, 26
 
     @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
     @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
@@ -161,6 +168,7 @@ Here is the TIF that is associated with knoxgardens:115 modeled as RDF:
     :linenos:
     :caption: The TIF belonging to knoxgardens:115 modeled as RDF in Fedora
     :name: The TIF belonging to knoxgardens:115 modeled as RDF in Fedora
+    :emphasize-lines: 24, 26, 44
 
     @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
     @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
@@ -213,6 +221,7 @@ Now the actual file:
     :linenos:
     :caption: The Actual File
     :name: The Actual File
+    :emphasize-lines: 24
 
     @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
     @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
