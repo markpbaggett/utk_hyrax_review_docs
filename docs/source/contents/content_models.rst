@@ -58,6 +58,10 @@ Using one of our objects, here is an overview of how this work and its collectio
 
 .. image:: ../images/pcdm_example.png
 
+Taking Hydra::Works and PCDM,  one TIFF from `Knoxville Gardens Slides` would look something like this in Fedora.
+
+.. image:: ../images/hydra-works-example.png
+
 The following ttl shows how the object `knoxgardens:115` from our Fedora 3.8 instance looks migrated to Hyrax and its
 relationship with its parent collection and its preservation Tiff.
 
