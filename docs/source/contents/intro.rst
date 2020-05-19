@@ -29,4 +29,5 @@ Other Links
 * `Samvera Metadata Application Profile <https://samvera.github.io/metadata_application_profile.html>`_
 * `Hyrax v.3.0 Metadata Application Profile Documentation Review Working Group <https://wiki.lyrasis.org/display/samvera/Hyrax+v3.0+Metadata+Application+Profile+Documentation+Review+Working+Group>`_
 * `Samvera MODS and RDF Descriptive Metadata Subgroup <https://wiki.lyrasis.org/display/samvera/MODS+and+RDF+Descriptive+Metadata+Subgroup>`_
+* `MIWG Desc Metadata -- How Metadata Decisions Get Made <https://docs.google.com/spreadsheets/d/13Y8iEqT2daThb6qqeKSsmZFKbPeDHhWGxXzfJWUAFSQ/edit#gid=854977831>`_
 
