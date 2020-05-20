@@ -1,5 +1,5 @@
-Content Modeling in Hyrax
-=========================
+2. Content Modeling in Hyrax
+============================
 
 Work Types aka "Curation Concerns"
 ----------------------------------

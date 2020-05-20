@@ -1,5 +1,5 @@
-UTK MODS to RDF
-===============
+3. MODS to RDF
+==============
 
 Hyrax 2.0 Metadata Application Profile
 --------------------------------------

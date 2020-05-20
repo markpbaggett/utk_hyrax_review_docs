@@ -1,5 +1,5 @@
-Working in Hyrax
-================
+4. Working in Hyrax
+===================
 
 Adding a New Metadata Field with Integration Tests and Unit Tests with Capybara
 -------------------------------------------------------------------------------

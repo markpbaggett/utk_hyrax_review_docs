@@ -1,5 +1,5 @@
-About Hyrax
-===========
+1. Intro and About
+==================
 
 For many years, the Hydra / Samvera community had two major front end solutions: CurationConcerns and Sufia. These
 solutions were built on the Hydra framework and geared at separate needs. CurationConcerns' main focus was on digital
