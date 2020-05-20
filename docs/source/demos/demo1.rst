@@ -139,10 +139,10 @@ Middleware
 ==========
 
 1. `hydra-head <https://github.com/projecthydra/hydra-head>`_:  This is one of those things I've heard about for years but never really understood.  This is a Ruby-on-Rails gem containing the core code for a web application using the full stack of Samvera building blocks. This is maybe similar to the old `islandora/islandora <https://github.com/islandora/islandora>`_ from Islandora 7.
-2. active-fedora: Ruby on Rails normally follows the Active Record pattern to persist objects to its database. In Hyrax, an alternative pattern called ActiveFedora to persist objects to Fedora.
-3. ldp: A ruby gem called ldp is used to implement the LDP (Linked Data Platform) interaction patterns for interaction containers in Fedora.
+2. active-fedora: Ruby on Rails normally follows the Active Record pattern to persist objects to its database. In Hyrax, an alternative pattern called ActiveFedora is used to persist objects to Fedora.
+3. ldp: A ruby gem called ldp is used to implement the LDP (Linked Data Platform) interaction patterns for interaction with containers in Fedora.
 4. rsolr: Rsolr is a ruby client for interacting with Solr.
-5. blacklight:  Most search and display behavior in Hyrax is inherited from Blacklight. Many Samvera institutions also run Blacklight applications separately from Samvera itself, to provide search and discovery for their other collections (think about our use of Ex Libris Primo). The Blacklight Project also has many of its own plugins, such as Spotlight for building virtual exhibits, and GeoBlacklight which enhances Blacklight for use with geospatial data.
+5. blacklight:  Most search and display behavior in Hyrax is inherited from Blacklight. Many Samvera institutions also run Blacklight applications separately from Samvera itself, to provide search and discovery for their other collections (think our use of Ex Libris Primo). The Blacklight Project also has many of its own plugins, such as Spotlight for building virtual exhibits, and GeoBlacklight which enhances Blacklight for use with geospatial data.
 
 ============
 Other things
@@ -160,5 +160,42 @@ Remember from earlier:
     Hyrax is the community-developed Ruby gem that allows users **to design and build their own**, customized installation
     of our software.
 
-Because of this, it may be surprising to hear that content modelling works very differently in Hyrax as opposed to
-Islandora 7.
+Because of this, it may be surprising to hear that content modelling works very differently in Hyrax as opposed to how
+things worked in Islandora 7.
+
+In Islandora 7, you had content models and solution packs. Content models were ideas defined in your RELS-EXT and each
+had solution packs that determined how it looked and displayed to users.
+
+This is different in Hyrax. In Hyrax, digital respository objects are referred to as **work types**. For you trivia
+buffs, they were historically called **curation concerns**, hence the name of the popular Samvera variant.
+
+While all Hyrax implementations require at least one work type, it ships with **NONE!!!!** Because of this, your first
+activity in Hyrax will be to generate a work type with a rails generator tool.  Some examples might be:
+
+.. code-block:: sh
+    :caption: A generic work type called Work
+    :name: A generic work type called Work
+
+    rails generate hyrax:work Work
+
+.. code-block:: sh
+    :caption: A work type for Images!
+    :name: A work type for Images!
+
+    rails generate hyrax:work Image
+
+.. code-block:: sh
+    :caption: A generic work for Moving Images!
+    :name: A generic work type called Work
+
+    rails generate hyrax:work MovingImage
+
+So **what the heck** is the generator doing and why do you have to do this?  Remember, Samvera / Hyrax is based on Ruby
+on Rails. Rails has a concept called **scaffolding**.  I don't want to get into this too much right now, but I stole
+this definition from someone on the internet:
+
+    **Scaffolding** in Ruby on Rails refers to the auto-generation of a set of a model, views, and a controller usually
+    used for a single database table.
+
+In other words, instead of having to write the initial code for your model, controller, and views for this work type,
+the generator creates all this for you to save you time.
