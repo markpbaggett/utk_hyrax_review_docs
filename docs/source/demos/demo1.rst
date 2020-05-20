@@ -186,7 +186,7 @@ activity in Hyrax will be to generate a work type with a rails generator tool.  
 
 .. code-block:: sh
     :caption: A generic work for Moving Images!
-    :name: A generic work type called Work
+    :name: A generic work type for Moving Images!
 
     rails generate hyrax:work MovingImage
 
@@ -199,3 +199,9 @@ this definition from someone on the internet:
 
 In other words, instead of having to write the initial code for your model, controller, and views for this work type,
 the generator creates all this for you to save you time.
+
+Here is a sample of what an Image work type that **has NOT been configured to work properly with Universal Viewer (Sorry!)**
+might look like:
+
+.. image:: ../images/bad_tulip_tree.png
+    :name: Bad Last Minute Tulip Tree
