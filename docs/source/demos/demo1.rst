@@ -21,7 +21,7 @@ Goals of Demo 1
 1. Explain Samvera and its Philosophy
 2. Explain Hyrax, its Origins, and why I'm Focusing on it for this Project
 3. Explain Hyrax and its Underlying Technologies
-4. Explain and Demonstrated Content Modeling in Hyrax and How it Works
+4. Explain and Demonstrate Content Modeling in Hyrax and How it Works
 5. Explain PCDM and how it is used in Hyrax
 6. Explain Metadata in Hyrax, What's Out of the Box, and Demo how you Customize it
 
@@ -43,7 +43,7 @@ To be clear, Samvera is more of a **community** than it is a software solution.
     series of free-to-use software **“building blocks”** that could put together in various combinations to achieve the
     repository system that an institution needed – as opposed to building a **“one size fits all”** solution.
 
-The building blocks here are what you often hear referred to as **"hydra heads."**
+The building blocks here are Ruby Gems.
 
     The framework as it exists today consists of a number of Ruby gems that can be combined, configured and adapted to
     serve a wide variety of digital repository needs.
@@ -77,9 +77,7 @@ addressing particular needs, that can be installed and maintained with fewer loc
 as a hosted, cloud service. Some examples of this are:
 
 1. `Avalon <http://www.avalonmediasystem.org/project>`_: a time-based media solution
-2. `Hyku <https://hyku.samvera.org/>`_: , which is based on Hyrax, allows users to build, bundle, and promote a feature-rich, robust, flexible
-digital repository that is easy to install, configure, and maintain. Hyku can be installed locally or run in the cloud;
-a number of service providers offer cloud-based, hosted versions.
+2. `Hyku <https://hyku.samvera.org/>`_: , which is based on Hyrax, allows users to build, bundle, and promote a feature-rich, robust, flexible digital repository that is easy to install, configure, and maintain. Hyku can be installed locally or run in the cloud; a number of service providers offer cloud-based, hosted versions.
 
 III. Hyrax Origins and Why I'm Looking at It and not something else
 -------------------------------------------------------------------
@@ -140,28 +138,27 @@ Interaction with Solr also happens via an HTTP API.
 Middleware
 ==========
 
-1. `hydra-head <https://github.com/projecthydra/hydra-head>`_:  This is one of those things I've heard about for years
-but never really understood.  This is a Ruby-on-Rails gem containing the core code for a web application using the full
-stack of Samvera building blocks. This is maybe similar to the old `islandora/islandora <https://github.com/islandora/islandora>`_
-from Islandora 7.
-2. active-fedora: Ruby on Rails normally follows the Active Record pattern to persist objects to its database. In
-Hyrax, an alternative pattern called ActiveFedora to persist objects to Fedora.
-3. ldp: A ruby gem called ldp is used to implement the LDP (Linked Data Platform) interaction patterns for interaction
-containers in Fedora.
+1. `hydra-head <https://github.com/projecthydra/hydra-head>`_:  This is one of those things I've heard about for years but never really understood.  This is a Ruby-on-Rails gem containing the core code for a web application using the full stack of Samvera building blocks. This is maybe similar to the old `islandora/islandora <https://github.com/islandora/islandora>`_ from Islandora 7.
+2. active-fedora: Ruby on Rails normally follows the Active Record pattern to persist objects to its database. In Hyrax, an alternative pattern called ActiveFedora to persist objects to Fedora.
+3. ldp: A ruby gem called ldp is used to implement the LDP (Linked Data Platform) interaction patterns for interaction containers in Fedora.
 4. rsolr: Rsolr is a ruby client for interacting with Solr.
-5. blacklight:  Most search and display behavior in Hyrax is inherited from Blacklight. Many Samvera institutions also
-run Blacklight applications separately from Samvera itself, to provide search and discovery for their other collections
-(think about our use of Ex Libris Primo). The Blacklight Project also has many of its own plugins, such as Spotlight for
-building virtual exhibits, and GeoBlacklight which enhances Blacklight for use with geospatial data.
+5. blacklight:  Most search and display behavior in Hyrax is inherited from Blacklight. Many Samvera institutions also run Blacklight applications separately from Samvera itself, to provide search and discovery for their other collections (think about our use of Ex Libris Primo). The Blacklight Project also has many of its own plugins, such as Spotlight for building virtual exhibits, and GeoBlacklight which enhances Blacklight for use with geospatial data.
 
 ============
 Other things
 ============
 
-1. Queuing System and Redis: Hyrax does not package a default queuing back-end. There are a lot flavors here (Sidekiq,
-Resque, and DelayedJob) but they all have Redis as a dependency.  `Sidekiq <https://github.com/samvera/hyrax/wiki/Using-Sidekiq-with-Hyrax>`_
-is most popular.
-2. Postgres: You of course need a database layer of some kind and most of the Rails world prefers Postgres over Maria /
-MySQL.
-3. An External Triple Store?: You may be wondering, where is the triple store!? Hyrax does not package one and it is entirely
-optional based on your needs.
+1. Queuing System and Redis: Hyrax does not package a default queuing back-end. There are a lot flavors here (Sidekiq, Resque, and DelayedJob) but they all have Redis as a dependency.  `Sidekiq <https://github.com/samvera/hyrax/wiki/Using-Sidekiq-with-Hyrax>`_ is most popular.
+2. Postgres: You of course need a database layer of some kind and most of the Rails world prefers Postgres over Maria / MySQL. In my investigation, I haven't found any institutions not using PostGres except for testing.
+3. An External Triple Store?: You may be wondering, where is the triple store!? Hyrax does not package one and it is entirely optional based on your needs.
+
+V. Content Modeling in Hyrax
+----------------------------
+
+Remember from earlier:
+
+    Hyrax is the community-developed Ruby gem that allows users **to design and build their own**, customized installation
+    of our software.
+
+Because of this, it may be surprising to hear that content modelling works very differently in Hyrax as opposed to
+Islandora 7.
