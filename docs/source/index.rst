@@ -11,8 +11,7 @@ Welcome to the documentation for UTK's Investigation of Samvera!
    :glob:
 
    contents/*
-
-
+   demos/*
 
 Indices and tables
 ==================
