@@ -11,8 +11,21 @@ repository solution.  This investigation is driven by UT Libraries'
 `Next Generation Digital Repository Solution <https://drive.google.com/file/d/1nsqoQlfJN4Cn-RJxLUO1A0MFD-s-pQNr/view?usp=sharing>`_.
 
 
+Demo 1: Content Models, Metadata, and the Stack
+-----------------------------------------------
+
+This section contains all content related to Demo 1 on May 21, 2020.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   demo1/*
+
 Mark's Musings, Thoughts, and Other Ramblings
 ---------------------------------------------
+
+This section contains my ramblings, thoughts in process, etc.
 
 .. toctree::
    :maxdepth: 2
@@ -20,14 +33,6 @@ Mark's Musings, Thoughts, and Other Ramblings
 
    contents/*
 
-Demos
------
-
-.. toctree::
-   :maxdepth: 2
-   :glob:
-
-   demos/*
 
 Indices and tables
 ==================
