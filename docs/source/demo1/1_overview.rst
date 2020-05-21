@@ -30,5 +30,6 @@ Other Notes
 
 1. It took me several days to even get anything running, so I've only technically been playing with this since May 8, 2020.
 2. In other words, I don't know very much yet and am still learning.
-3. I have **way too much content** for this presentation.  When I've gone 30 minutes, someone please let me know so I can stop and answer questions.
-4. If we have time at the end, I'll show anything I didn't get to or if we don't get to it at the end I'm happy to talk afterwards.
+3. When I talk about Islandora in this presentation I'm referring to the Islandora 7 stack unless I say otherwise. I'm not talking about the Islandora community or Islandora 8.
+4. I have **way too much content** for this presentation.  When I've gone 30 minutes, someone please let me know so I can stop and answer questions.
+5. If we have time at the end, I'll show anything I didn't get to or if we don't get to it at the end I'm happy to talk afterwards.
