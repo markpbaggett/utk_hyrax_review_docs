@@ -47,7 +47,14 @@ In other words, instead of having to write the initial code for your model, cont
 the generator creates all this for you to save you time.
 
 Here is a sample of what an Image work type that **has NOT been configured to work properly with Universal Viewer (Sorry!)**
-might look like:
+might look like out of the box:
 
 .. image:: ../images/bad_tulip_tree.png
     :name: Bad Last Minute Tulip Tree
+
+==============
+In Other Words
+==============
+
+1. There is no **book** or **compound object** in Hyrax.  There is only Hydra Works, and this is **by design**.
+2. You can of course go out and steal someone's book or compound object from their Hyrax implementation, but the idea behind content modeling in Hyrax is allow you to **present content the way you want** and allow that content to work easily with other Hyrax features.
