@@ -7,14 +7,14 @@ As explained in the PCDM wiki:
     The Portland Common Data Model (PCDM) is a flexible, extensible domain model that is intended to underlie a wide
     array of repository and DAMS applications. The primary objective of this model is to establish a framework that
     developers of tools (e.g., Samvera-based engines, such as Hyrax, Hyku, Sufia, and Avalon; Islandora; custom Fedora
-    sites) can use for working with models in a general way, allowing adopters to easily use custom models with any
-    tool. Given this interoperability goal, the initial work has been focused on structural metadata and access control,
+    sites) can use for working with models in a general way, allowing adopters to **easily use custom models with any tool**.
+    Given this interoperability goal, the initial work has been focused on **structural metadata and access control**,
     since these are the key actionable metadata.
 
     To encourage adoption, this model must support the most complex use cases, which include rich hierarchies of
     inter-related collections and works, but also elegantly support the simplest use cases, such as a single
     user-contributed file with a few fields of metadata. It must provide a compact interface that tool developers can
-    easily implement, but also be extensible enough for adopters to customize to their local needs.
+    easily implement, but also **be extensible enough for adopters to customize to their local needs**.
 
     As the community migrates to Fedora 4, much of our metadata is migrating to RDF. This model encourages linked data
     best practices, such as using URIs to identify all resources, using widely-used vocabularies where possible, and
@@ -30,10 +30,10 @@ pcdm:Object
 
 About:
 
-    An Object is an intellectual entity, sometimes called a "work", "digital object", etc. Objects have descriptive
-    metadata, access metadata, may contain files and other Objects as member "parts" or "components". Each level of a
+    An Object is an intellectual entity, sometimes called a "work", "digital object", etc. Objects **have descriptive**
+    **metadata, access metadata, may contain files and other Objects as member "parts" or "components"**. Each level of a
     work is therefore represented by an Object instance, and is capable of standing on its own, being linked to from
-    Collections and other Objects. Member Objects can be ordered using the ORE Proxy class.
+    Collections and other Objects. Member objects can be ordered using the ORE Proxy class.
 
 ---------------
 pcdm:Collection
@@ -41,8 +41,8 @@ pcdm:Collection
 
 About:
 
-    A Collection is a group of resources. Collections have descriptive metadata, access metadata, and may link to
-    Objects and/or Collections. By default, member Objects and Collections are an unordered set, but can be ordered
+    A Collection is a group of resources. Collections **have descriptive metadata, access metadata, and may link to**
+    **Objects and/or Collections**. By default, member Objects and Collections are an unordered set, but can be ordered
     using the ORE Proxy class
 
 ---------
@@ -51,9 +51,9 @@ pcdm:File
 
 About:
 
-    A File is a sequence of binary data and is described by some accompanying metadata. The metadata typically includes
-    at least basic technical metadata (size, content type, modification date, etc.), but can also include properties
-    related to preservation, digitization process, provenance, etc. Files MUST be contained by exactly one Object.
+    A File is **a sequence of binary data** and is described by some accompanying metadata. The metadata typically includes
+    at least **basic technical metadata (size, content type, modification date, etc.)**, but can also include properties
+    related to preservation, digitization process, provenance, etc. Files **MUST** be contained by exactly one Object.
 
 ==========================
 Membership vs. Aggregation
@@ -61,18 +61,18 @@ Membership vs. Aggregation
 
 In PCDM, membership and aggregation express different relationships between Collections and Objects:
 
-    pcdm:hasMember indicates that a resource is a constituent part of the parent resource, such as a page within a book,
+    **pcdm:hasMember** indicates that a resource is a constituent part of the parent resource, such as a page within a book,
     or a song within an album. This is the typical relationship between these entities.
 
-    pcdm:hasRelatedObject indicates a different kind of relationship, typically around documenting the parent entity.
+    **pcdm:hasRelatedObject** indicates a different kind of relationship, typically around documenting the parent entity.
     For example, the cover image within the book or album.
 
 =================
 PCDM and Web ACLs
 =================
 
-In PCDM, WebACLs are used to specify what actions users can perform on resources. Each ACL is created as its own resource
-which links to the users, resources, and actions allowed. Users and resources can both be identified individually or
+In PCDM, WebACLs are used to **specify what actions users can perform on resources**. Each ACL is **created as its own resource**
+which **links to the users, resources, and actions allowed**. Users and resources can both be identified individually or
 using classes. The WebACL ontology includes several actions (read, write, append, control).
 
 Each Collection, Object and File instance can be assigned its own Web ACL. For example, an Object and its thumbnail
@@ -85,8 +85,8 @@ PCDM in Hyrax
 While PCDM is used across the Fedora community and it was built with the intent that everyone would want to use it, the
 diversity of use cases:
 
-    means that we don't expect every adopter to implement this model in the same way or with the same tools.
-    We expect implementers to extend this model to fit their local needs, and hope that the model will help provide a
+    means that we **don't expect every adopter to implement this model in the same way** or with the same tools.
+    We expect implementers to extend this model to **fit their local needs**, and hope that the model will help provide a
     framework for implementers to share RDF vocabularies and implementations.
 
 So while Hyrax uses PCDM, it uses it in its own way. Like all modern Samvera variants, Hyrax relies on
