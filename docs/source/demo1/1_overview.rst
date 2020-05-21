@@ -21,3 +21,13 @@ Goals of Demo 1
 4. Explain and Demonstrate Content Modeling in Hyrax and How it Works
 5. Explain PCDM and how it is used in Hyrax
 6. Explain Metadata in Hyrax, What's Out of the Box, and Demo how you Customize it
+
+===========
+Other Notes
+===========
+
+1. It took me several days to even get anything running, so I've only technically been playing with this since May 8, 2020.
+2. In other words, I don't know very much yet and am still learning.
+3. I have **way too much content** for this presentation.  When I've gone 30 minutes, someone please let me know so I can stop
+and answer questions.
+4. If we have time at the end, I'll show anything I didn't get to or talk after.
