@@ -1,4 +1,4 @@
-III. Hyrax Origins and Why I'm Looking at It and not something else
+III. Hyrax Origins and Why I'm Looking at It and Not Something Else
 -------------------------------------------------------------------
 
 For many years, the Hydra / Samvera community had two major *variants*:
