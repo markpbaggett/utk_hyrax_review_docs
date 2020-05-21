@@ -35,13 +35,14 @@ Today, this is a little different.  About five years ago, the two biggest *Samve
 and **Sufia**, merged into a common solution called **Hyrax**.
 
     Hyrax is the community-developed Ruby gem that allows users **to design and build their own**, customized installation
-    of our software.
+    of the Samvera software.
 
-Again, this is a very different approach than Islandora 7. The Samvera community believes this approach:
+Again, this is still not necessarily discrete software and is most certainly a very different approach than Islandora 7.
+The Samvera community believes having **Hyrax** instead of discrete software:
 
     ... allows an institution to build for themselves a repository solution closely fitted to their needs ...
 
-However, the Samvera community also recognizes that the:
+I should also not that the Samvera community also recognizes that the:
 
     ... building process and later the maintenance of such a customized system can be resource intensive ...
 
