@@ -173,3 +173,239 @@ Rspec will still fail until will modify `app/forms/hyrax/image_form.rb` by addin
 ============
 
 Now run tests.  Everyone is happy!
+
+Add New Metadata Field to Views and Index
+-----------------------------------------
+
+In the previous section, I added a metadata field to our Image model and its associated form with integration and unit
+tests. The field is now present in the form view and populates a triple in the associated Fedora container.  Now, let's
+add the field to the Object View and Index.
+
+========================
+1. Add Show feature test
+========================
+
+As always, let's start with an integration / feature test. Create a new file at `spec/features/show_image_spec.rb`:
+
+.. code-block:: ruby
+    :linenos:
+
+    require 'rails_helper'
+
+    RSpec.feature 'Display an Image' do
+      let(:title)      { ['Journey to Skull Island'] }
+      let(:creator)    { ['Quest, Jane'] }
+      let(:keyword)    { ['Pirates', 'Adventure'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let(:user)       { 'test@example.com' }
+
+      let :image do
+        Image.create(title:      title,
+                    creator:    creator,
+                    keyword:    keyword,
+                    visibility: visibility,
+                    depositor:  user)
+      end
+
+      scenario "Show a public Image" do
+        visit("/concern/images/#{image.id}")
+
+        expect(page).to have_content image.title.first
+        expect(page).to have_content image.creator.first
+        expect(page).to have_content image.keyword.first
+        expect(page).to have_content image.keyword.last
+      end
+    end
+
+This feature tests whether the Object view has the fields we expect.
+
+If we run tests with `rspec spec` or `rspec spec/features/show_image_spec.rb` everything should pass.
+
+============================================
+2. Add Our New Field to Our New Feature Test
+============================================
+
+Now, let's add our new field to our new feature test.
+
+We need to:
+
+1. Define our new field with a value.
+2. Add population to our create block
+3. Add an expectation that our field and value are there.
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 9, 17, 27
+
+    require 'rails_helper'
+
+    RSpec.feature 'Display an Image' do
+      let(:title)      { ['Journey to Skull Island'] }
+      let(:creator)    { ['Quest, Jane'] }
+      let(:keyword)    { ['Pirates', 'Adventure'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let(:user)       { 'test@example.com' }
+      let(:year)       { ['2010'] }
+
+      let :image do
+        Image.create(title:      title,
+                    creator:    creator,
+                    keyword:    keyword,
+                    visibility: visibility,
+                    depositor:  user,
+                    year: year)
+      end
+
+      scenario "Show a public Image" do
+        visit("/concern/images/#{image.id}")
+
+        expect(page).to have_content image.title.first
+        expect(page).to have_content image.creator.first
+        expect(page).to have_content image.keyword.first
+        expect(page).to have_content image.keyword.last
+        expect(page).to have_content image.year.first
+      end
+    end
+
+If we run `rspec spec/features/show_image_spec.rb`, we should get a failure like this:
+
+    Display an Image
+        Show a public Image (FAILED - 1)
+
+    Failures:
+
+      1) Display an Image Show a public Image
+         Failure/Error: expect(page).to have_content image.year.first
+           expected to find text "2010" in "Skip to Content\nToggle navigation Hyrax\nSwitch language English\nSwitch language Deutsch English Español Français Italiano Português do Brasil 中文\nLogin\nHome About Help Contact\nSearch Hyrax\nGo\nHome\nImage\nJourney to Skull Island\nPublic\n× Add to collection\nYou do not have access to any existing collections. You may create a new collection.\nClose\nCitations:\nEndNote Zotero Mendeley\nCreator\nQuest, Jane\nKeyword\nPiratesAdventure\nRelationships\nItems\nThere are no publicly available items in this Image.\nA service of Samvera.\nHyrax v3.0.0-beta1\nCopyright © 2018 Samvera Licensed under the Apache License, Version 2.0"
+         # ./spec/features/show_image_spec.rb:27:in `block (2 levels) in <top (required)>'
+
+The test fails because while it can add the new value to our year field, it can't display it because we haven't told it to do so.
+
+===========================================
+3. Modify the Presenter for our Image class
+===========================================
+
+Rails adheres to the "model-view-controller" pattern. In addition to models, views, and controllers, we also have
+presenters, sometimes also referred to as a **"Decorator"** or **"View-Model."** The presenter is responsible for
+translating values from the model to a presentable form.
+
+When we "scaffolded" / **"generated"** our Image work, 2 other files were created for us:
+
+1. `app/presenters/hyrax/image_presenter.rb`
+2. `spec/presenters/hyrax/image_presenter_spec.rb`
+
+Let's start by creating a test to our stubbed `spec/presenters/hyrax/image_presenter_spec.rb` file.  The stub looks
+like this:
+
+.. code-block:: ruby
+
+    # Generated via
+    #  `rails generate hyrax:work Image`
+    require 'rails_helper'
+
+    RSpec.describe Hyrax::ImagePresenter do
+      it "has tests" do
+        skip "Add your tests here"
+      end
+    end
+
+Let's update this code with a unit test:
+
+.. code-block:: ruby
+
+    require 'rails_helper'
+
+    RSpec.describe Hyrax::ImagePresenter do
+      subject { presenter }
+
+      let(:title) { ['Journey to Skull Island'] }
+      let(:creator) { ['Quest, Jane'] }
+      let(:keyword) { ['Pirates', 'Adventure'] }
+      let(:degree) { ['Master of Pirate Studies'] }
+      let(:year) { ['2010'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let :image do
+        Image.new(
+          title: title,
+          creator: creator,
+          keyword: keyword,
+          year: year,
+          visibility: visibility
+        )
+      end
+
+      let(:ability) { Ability.new(user) }
+
+      let(:solr_document) { SolrDocument.new(image.to_solr) }
+
+      let(:presenter) do
+        described_class.new(solr_document, nil)
+      end
+
+      it "delegates year to solr document" do
+        expect(solr_document).to receive(:year)
+        presenter.year
+      end
+    end
+
+If we test our file with `rspec spec/presenters/hyrax/image_presenter_spec.rb`, it should fail with:
+
+    Hyrax::ImagePresenter
+      delegates year to solr document (FAILED - 1)
+
+    Failures:
+
+      1) Hyrax::ImagePresenter delegates year to solr document
+         Failure/Error: expect(solr_document).to receive(:year)
+           #<SolrDocument:0x0000558d1f7cf7c0 @_source={"system_create_dtsi"=>"2020-05-27T13:28:44Z", "system_modified_dtsi"=>"2020-05-27T13:28:44Z", "has_model_ssim"=>["Image"], "id"=>nil, "title_tesim"=>["Journey to Skull Island"], "title_sim"=>["Journey to Skull Island"], "creator_tesim"=>["Quest, Jane"], "creator_sim"=>["Quest, Jane"], "keyword_tesim"=>["Adventure", "Pirates"], "keyword_sim"=>["Adventure", "Pirates"], "thumbnail_path_ss"=>"/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png", "suppressed_bsi"=>false, "member_ids_ssim"=>[], "member_of_collections_ssim"=>[], "member_of_collection_ids_ssim"=>[], "generic_type_sim"=>["Work"], "file_set_ids_ssim"=>[], "visibility_ssi"=>"open", "admin_set_sim"=>"", "admin_set_tesim"=>"", "human_readable_type_sim"=>"Image", "human_readable_type_tesim"=>"Image", "read_access_group_ssim"=>["public"]}, @response=nil, @export_formats={:xml=>{:content_type=>#<Mime::Type:0x0000558d1503ae88 @synonyms=["text/xml", "application/x-xml"], @symbol=:xml, @string="application/xml", @hash=3027524866981404255>}, :dc_xml=>{:content_type=>"text/xml"}, :oai_dc_xml=>{:content_type=>"text/xml"}, :nt=>{:content_type=>"application/n-triples"}, :jsonld=>{:content_type=>"application/ld+json"}, :ttl=>{:content_type=>"text/turtle"}}> does not implement: year
+         # ./spec/presenters/hyrax/image_presenter_spec.rb:31:in `block (2 levels) in <top (required)>'
+
+Let's add this line to `app/presenters/hyrax/image_presenter.rb`:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 5
+
+    # Generated via
+    #  `rails generate hyrax:work Image`
+    module Hyrax
+      class ImagePresenter < Hyrax::WorkShowPresenter
+        delegate :year, to: :solr_document
+      end
+    end
+
+Normally, we'd also have to add our custom presenter to the relevant controller (in this case, `app/controllers/hyrax/images_controller.rb`),
+but if we review this file we can see that's already there for us because of our **generator**:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 12
+
+    # Generated via
+    #  `rails generate hyrax:work Image`
+    module Hyrax
+      # Generated controller for Image
+      class ImagesController < ApplicationController
+        # Adds Hyrax behaviors to the controller.
+        include Hyrax::WorksControllerBehavior
+        include Hyrax::BreadcrumbsForWorks
+        self.curation_concern_type = ::Image
+
+        # Use this line if you want to use a custom presenter
+        self.show_presenter = Hyrax::ImagePresenter
+      end
+    end
+
+Finally, if we run tests, we should see a new failure:
+
+    Hyrax::ImagePresenter
+      delegates year to solr document (FAILED - 1)
+
+    Failures:
+
+      1) Hyrax::ImagePresenter delegates year to solr document
+         Failure/Error: expect(solr_document).to receive(:year)
+           #<SolrDocument:0x000055a1f28626c8 @_source={"system_create_dtsi"=>"2020-05-27T13:38:03Z", "system_modified_dtsi"=>"2020-05-27T13:38:03Z", "has_model_ssim"=>["Image"], "id"=>nil, "title_tesim"=>["Journey to Skull Island"], "title_sim"=>["Journey to Skull Island"], "creator_tesim"=>["Quest, Jane"], "creator_sim"=>["Quest, Jane"], "keyword_tesim"=>["Pirates", "Adventure"], "keyword_sim"=>["Pirates", "Adventure"], "thumbnail_path_ss"=>"/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png", "suppressed_bsi"=>false, "member_ids_ssim"=>[], "member_of_collections_ssim"=>[], "member_of_collection_ids_ssim"=>[], "generic_type_sim"=>["Work"], "file_set_ids_ssim"=>[], "visibility_ssi"=>"open", "admin_set_sim"=>"", "admin_set_tesim"=>"", "human_readable_type_sim"=>"Image", "human_readable_type_tesim"=>"Image", "read_access_group_ssim"=>["public"]}, @response=nil, @export_formats={:xml=>{:content_type=>#<Mime::Type:0x000055a1e8c39558 @synonyms=["text/xml", "application/x-xml"], @symbol=:xml, @string="application/xml", @hash=-1551218801630174043>}, :dc_xml=>{:content_type=>"text/xml"}, :oai_dc_xml=>{:content_type=>"text/xml"}, :nt=>{:content_type=>"application/n-triples"}, :jsonld=>{:content_type=>"application/ld+json"}, :ttl=>{:content_type=>"text/turtle"}}> does not implement: year
+
+Progress!
+
