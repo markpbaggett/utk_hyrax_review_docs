@@ -632,7 +632,7 @@ functionality.  Let's add a line for our new field:
       end
     end
 
-Now if we run tests with `rspec spec/features/search_image_spec.rb it should fail with:
+Now if we run tests with `rspec spec/features/search_image_spec.rb` it should fail with:
 
 .. code-block:: text
 
@@ -643,4 +643,44 @@ Now if we run tests with `rspec spec/features/search_image_spec.rb it should fai
          Failure/Error: expect(page).to have_content image.year.first
            expected to find text "1520" in "Skip to Content\nToggle navigation Hyrax\nSwitch language English\nSwitch language Deutsch English Español Français Italiano Português do Brasil 中文\nLogin\nHome About Help Contact\nSearch Hyrax\nGo\nSearch Constraints\nStart Over\nFiltering by: Journey Remove constraint Journey\n1 entry found\nSort by relevance\nrelevance date uploaded ▼ date uploaded ▲ date modified ▼ date modified ▲\nNumber of results to display per page\n10 per page\n10 per page 20 per page 50 per page 100 per page\nView results as:\nList Gallery Masonry Slideshow\nSearch Results\nJourney to Skull Island\nKeyword: Pirates and Adventure Creator: Quest, Jane\nToggle facets\nLimit your search\nType\nImage1\nCreator\nQuest, Jane1\nKeyword\nAdventure1Pirates1\nA service of Samvera.\nHyrax v3.0.0-beta1\nCopyright © 2018 Samvera Licensed under the Apache License, Version 2.0"
          # ./spec/features/search_image_spec.rb:30:in `block (3 levels) in <top (required)>'
+
+==============================================
+2. Add New Metadata Field to BlackLight Config
+==============================================
+
+In Hyrax, search behavior is inherited from Blacklight.  In order to change what fields are displayed in the search
+results, we have to update our Blacklight config.
+
+To do this, edit `app/controllers/catalog_controller.rb` and look for the section including add_index_field statements:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 24
+
+    # solr fields to be displayed in the index (search results) view
+    #   The ordering of the field names is the order of the display
+    config.add_index_field solr_name("title", :stored_searchable), label: "Title", itemprop: 'name', if: false
+    config.add_index_field solr_name("description", :stored_searchable), itemprop: 'description', helper_method: :iconify_auto_link
+    config.add_index_field solr_name("keyword", :stored_searchable), itemprop: 'keywords', link_to_search: solr_name("keyword", :facetable)
+    config.add_index_field solr_name("subject", :stored_searchable), itemprop: 'about', link_to_search: solr_name("subject", :facetable)
+    config.add_index_field solr_name("creator", :stored_searchable), itemprop: 'creator', link_to_search: solr_name("creator", :facetable)
+    config.add_index_field solr_name("contributor", :stored_searchable), itemprop: 'contributor', link_to_search: solr_name("contributor", :facetable)
+    config.add_index_field solr_name("proxy_depositor", :symbol), label: "Depositor", helper_method: :link_to_profile
+    config.add_index_field solr_name("depositor"), label: "Owner", helper_method: :link_to_profile
+    config.add_index_field solr_name("publisher", :stored_searchable), itemprop: 'publisher', link_to_search: solr_name("publisher", :facetable)
+    config.add_index_field solr_name("based_near_label", :stored_searchable), itemprop: 'contentLocation', link_to_search: solr_name("based_near_label", :facetable)
+    config.add_index_field solr_name("language", :stored_searchable), itemprop: 'inLanguage', link_to_search: solr_name("language", :facetable)
+    config.add_index_field solr_name("date_uploaded", :stored_sortable, type: :date), itemprop: 'datePublished', helper_method: :human_readable_date
+    config.add_index_field solr_name("date_modified", :stored_sortable, type: :date), itemprop: 'dateModified', helper_method: :human_readable_date
+    config.add_index_field solr_name("date_created", :stored_searchable), itemprop: 'dateCreated'
+    config.add_index_field solr_name("rights_statement", :stored_searchable), helper_method: :rights_statement_links
+    config.add_index_field solr_name("license", :stored_searchable), helper_method: :license_links
+    config.add_index_field solr_name("resource_type", :stored_searchable), label: "Resource Type", link_to_search: solr_name("resource_type", :facetable)
+    config.add_index_field solr_name("file_format", :stored_searchable), link_to_search: solr_name("file_format", :facetable)
+    config.add_index_field solr_name("identifier", :stored_searchable), helper_method: :index_field_link, field_name: 'identifier'
+    config.add_index_field solr_name("embargo_release_date", :stored_sortable, type: :date), label: "Embargo release date", helper_method: :human_readable_date
+    config.add_index_field solr_name("lease_expiration_date", :stored_sortable, type: :date), label: "Lease expiration date", helper_method: :human_readable_date
+    config.add_index_field solr_name("year", :stored_searchable), label: "Year"
+
+Now, if we run our test `rspec spec/features/search_image_spec.rb` it should pass.
 
