@@ -1,5 +1,5 @@
-4. Working in Hyrax
-===================
+4. Working with Metadata in Hyrax
+=================================
 
 Adding a New Metadata Field with Integration Tests and Unit Tests with Capybara
 -------------------------------------------------------------------------------
@@ -533,3 +533,114 @@ Now, if we check out our view, we should see something like this:
 And in Solr, we should see something like this:
 
 .. image:: ../images/year_in_solr.png
+
+
+Add Fields to Search Results and Facets
+---------------------------------------
+
+So far we've:
+
+1. Created a New Metadata Field
+2. Added it to our metadata form with tests
+3. Demoed how the field hooks in with Fedora
+4. Added the field to be indexed by Solr with Tests
+5. Tied our new Solr Field to our View with Tests
+
+Now, let's add our field to search results and facets.
+
+==================================
+1. Add Feature Spec for Our Search
+==================================
+
+The first thing we need to do is to add a new or modify our existing `spec/features/search_image_spec.rb`.
+
+If we're adding from new, let's create a file with our current search functionality:
+
+.. code-block:: ruby
+
+    require 'rails_helper'
+
+    RSpec.feature 'Search for an image' do
+      let(:title) { ['Journey to Skull Island'] }
+      let(:creator) { ['Quest, Jane'] }
+      let(:keyword) { ['Pirates', 'Adventure'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let(:year) { ['1520'] }
+      let(:image) do
+        Image.new(title: title,
+                 creator: creator,
+                 keyword: keyword,
+                 visibility: visibility,
+                 year: year)
+      end
+
+      context 'general search' do
+        before do
+          image.save
+        end
+        scenario "Search for an image" do
+          visit("/")
+          fill_in "q", with: "Journey"
+          click_button "Go"
+          # Uncomment this to display the HTML capybara is seeing
+          # puts page.body
+          expect(page).to have_content image.title.first
+          expect(page).to have_content image.creator.first
+          expect(page).to have_content image.keyword.first
+        end
+      end
+    end
+
+If we ran tests with `rspec spec/features/search_image_spec.rb` it should pass because this only reflects our existing
+functionality.  Let's add a line for our new field:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 30
+
+    require 'rails_helper'
+
+    RSpec.feature 'Search for an image' do
+      let(:title) { ['Journey to Skull Island'] }
+      let(:creator) { ['Quest, Jane'] }
+      let(:keyword) { ['Pirates', 'Adventure'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let(:year) { ['1520'] }
+      let(:image) do
+        Image.new(title: title,
+                 creator: creator,
+                 keyword: keyword,
+                 visibility: visibility,
+                 year: year)
+      end
+
+      context 'general search' do
+        before do
+          image.save
+        end
+        scenario "Search for an image" do
+          visit("/")
+          fill_in "q", with: "Journey"
+          click_button "Go"
+          # Uncomment this to display the HTML capybara is seeing
+          # puts page.body
+          expect(page).to have_content image.title.first
+          expect(page).to have_content image.creator.first
+          expect(page).to have_content image.keyword.first
+          expect(page).to have_content image.year.first
+        end
+      end
+    end
+
+Now if we run tests with `rspec spec/features/search_image_spec.rb it should fail with:
+
+.. code-block:: text
+
+
+    Failures:
+
+      1) Search for an image general search Search for an image
+         Failure/Error: expect(page).to have_content image.year.first
+           expected to find text "1520" in "Skip to Content\nToggle navigation Hyrax\nSwitch language English\nSwitch language Deutsch English Español Français Italiano Português do Brasil 中文\nLogin\nHome About Help Contact\nSearch Hyrax\nGo\nSearch Constraints\nStart Over\nFiltering by: Journey Remove constraint Journey\n1 entry found\nSort by relevance\nrelevance date uploaded ▼ date uploaded ▲ date modified ▼ date modified ▲\nNumber of results to display per page\n10 per page\n10 per page 20 per page 50 per page 100 per page\nView results as:\nList Gallery Masonry Slideshow\nSearch Results\nJourney to Skull Island\nKeyword: Pirates and Adventure Creator: Quest, Jane\nToggle facets\nLimit your search\nType\nImage1\nCreator\nQuest, Jane1\nKeyword\nAdventure1Pirates1\nA service of Samvera.\nHyrax v3.0.0-beta1\nCopyright © 2018 Samvera Licensed under the Apache License, Version 2.0"
+         # ./spec/features/search_image_spec.rb:30:in `block (3 levels) in <top (required)>'
+
