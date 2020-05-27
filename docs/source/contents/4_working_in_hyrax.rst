@@ -269,6 +269,8 @@ We need to:
 
 If we run `rspec spec/features/show_image_spec.rb`, we should get a failure like this:
 
+.. code-block:: text
+
     Display an Image
         Show a public Image (FAILED - 1)
 
@@ -350,6 +352,8 @@ Let's update this code with a unit test:
 
 If we test our file with `rspec spec/presenters/hyrax/image_presenter_spec.rb`, it should fail with:
 
+.. code-block:: text
+
     Hyrax::ImagePresenter
       delegates year to solr document (FAILED - 1)
 
@@ -398,6 +402,8 @@ but if we review this file we can see that's already there for us because of our
 
 Finally, if we run tests, we should see a new failure:
 
+.. code-block:: text
+
     Hyrax::ImagePresenter
       delegates year to solr document (FAILED - 1)
 
@@ -407,5 +413,123 @@ Finally, if we run tests, we should see a new failure:
          Failure/Error: expect(solr_document).to receive(:year)
            #<SolrDocument:0x000055a1f28626c8 @_source={"system_create_dtsi"=>"2020-05-27T13:38:03Z", "system_modified_dtsi"=>"2020-05-27T13:38:03Z", "has_model_ssim"=>["Image"], "id"=>nil, "title_tesim"=>["Journey to Skull Island"], "title_sim"=>["Journey to Skull Island"], "creator_tesim"=>["Quest, Jane"], "creator_sim"=>["Quest, Jane"], "keyword_tesim"=>["Pirates", "Adventure"], "keyword_sim"=>["Pirates", "Adventure"], "thumbnail_path_ss"=>"/assets/work-ff055336041c3f7d310ad69109eda4a887b16ec501f35afc0a547c4adb97ee72.png", "suppressed_bsi"=>false, "member_ids_ssim"=>[], "member_of_collections_ssim"=>[], "member_of_collection_ids_ssim"=>[], "generic_type_sim"=>["Work"], "file_set_ids_ssim"=>[], "visibility_ssi"=>"open", "admin_set_sim"=>"", "admin_set_tesim"=>"", "human_readable_type_sim"=>"Image", "human_readable_type_tesim"=>"Image", "read_access_group_ssim"=>["public"]}, @response=nil, @export_formats={:xml=>{:content_type=>#<Mime::Type:0x000055a1e8c39558 @synonyms=["text/xml", "application/x-xml"], @symbol=:xml, @string="application/xml", @hash=-1551218801630174043>}, :dc_xml=>{:content_type=>"text/xml"}, :oai_dc_xml=>{:content_type=>"text/xml"}, :nt=>{:content_type=>"application/n-triples"}, :jsonld=>{:content_type=>"application/ld+json"}, :ttl=>{:content_type=>"text/turtle"}}> does not implement: year
 
-Progress!
+Progress! Our test is looking for year in Solr, but it's not there.  Let's put it there.
 
+===========================
+4. Adding Our Field to Solr
+===========================
+
+Let's open our image model (`app/models/image.rb`) and add instructions for how our field should be indexed.
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 12-14
+
+    # Generated via
+    #  `rails generate hyrax:work Image`
+    class Image < ActiveFedora::Base
+      include ::Hyrax::WorkBehavior
+
+      self.indexer = ImageIndexer
+      # Change this to restrict which works can be added as a child.
+      # self.valid_child_concerns = []
+      validates :title, presence: { message: 'Your work must have a title.' }
+
+      property :year, predicate: "http://www.europeana.eu/schemas/edm/year"
+      property :year, predicate: "http://www.europeana.eu/schemas/edm/year" do |index|
+        index.as :stored_searchable
+      end
+
+      # This must be included at the end, because it finalizes the metadata
+      # schema (by adding accepts_nested_attributes)
+      include ::Hyrax::BasicMetadata
+    end
+
+Now, let's add the field to our solr document by editing `app/models/solr_document.rb`:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 29 - 31
+
+    # frozen_string_literal: true
+    class SolrDocument
+      include Blacklight::Solr::Document
+      include Blacklight::Gallery::OpenseadragonSolrDocument
+
+      # Adds Hyrax behaviors to the SolrDocument.
+      include Hyrax::SolrDocumentBehavior
+
+
+      # self.unique_key = 'id'
+
+      # Email uses the semantic field mappings below to generate the body of an email.
+      SolrDocument.use_extension(Blacklight::Document::Email)
+
+      # SMS uses the semantic field mappings below to generate the body of an SMS email.
+      SolrDocument.use_extension(Blacklight::Document::Sms)
+
+      # DublinCore uses the semantic field mappings below to assemble an OAI-compliant Dublin Core document
+      # Semantic mappings of solr stored fields. Fields may be multi or
+      # single valued. See Blacklight::Document::SemanticFields#field_semantics
+      # and Blacklight::Document::SemanticFields#to_semantic_values
+      # Recommendation: Use field names from Dublin Core
+      use_extension(Blacklight::Document::DublinCore)
+
+      # Do content negotiation for AF models.
+
+      use_extension( Hydra::ContentNegotiation )
+
+      def year
+        self[Solrizer.solr_name('year')]
+      end
+    end
+
+Now, our test `rspec spec/presenters/hyrax/image_presenter_spec.rb` passes.
+
+=======================================
+5. Adding the Field to Our Test Partial
+=======================================
+
+Currently, our Hyrax app does not have a file like ` <https://github.com/samvera/hyrax/blob/master/app/views/hyrax/base/_attribute_rows.html.erb>`_
+
+Let's copy it to the same path and add our new field:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 19
+
+    <%= presenter.attribute_to_html(:abstract, html_dl: true) %>
+    <%= presenter.attribute_to_html(:date_modified, label: t('hyrax.base.show.last_modified'), html_dl: true) %>
+    <%= presenter.attribute_to_html(:creator, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:contributor, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:subject, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:publisher, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:language, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:identifier, render_as: :linked, search_field: 'identifier_tesim', html_dl: true) %>
+    <%= presenter.attribute_to_html(:keyword, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:date_created, render_as: :linked, search_field: 'date_created_tesim', html_dl: true) %>
+    <%= presenter.attribute_to_html(:based_near_label, html_dl: true) %>
+    <%= presenter.attribute_to_html(:related_url, render_as: :external_link, html_dl: true) %>
+    <%= presenter.attribute_to_html(:resource_type, render_as: :faceted, html_dl: true) %>
+    <%= presenter.attribute_to_html(:source, html_dl: true) %>
+    <%= presenter.attribute_to_html(:rights_statement, render_as: :rights_statement, html_dl: true) %>
+    <%= presenter.attribute_to_html(:rights_notes, html_dl: true) %>
+    <%= presenter.attribute_to_html(:access_right, html_dl: true) %>
+    <%= presenter.attribute_to_html(:license, render_as: :license, html_dl: true) %>
+    <%= presenter.attribute_to_html(:year) %>
+
+If we run our test, `rspec spec/features/show_image_spec.rb`, it should pass.
+
+
+==================================
+6. Let's Look at Solr and the View
+==================================
+
+Now, if we check out our view, we should see something like this:
+
+.. image:: ../images/year_in_the_view.png
+
+
+And in Solr, we should see something like this:
+
+.. image:: ../images/year_in_solr.png
