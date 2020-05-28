@@ -423,7 +423,7 @@ Let's open our image model (`app/models/image.rb`) and add instructions for how 
 
 .. code-block:: ruby
     :linenos:
-    :emphasize-lines: 12-14
+    :emphasize-lines: 11-13
 
     # Generated via
     #  `rails generate hyrax:work Image`
@@ -435,7 +435,6 @@ Let's open our image model (`app/models/image.rb`) and add instructions for how 
       # self.valid_child_concerns = []
       validates :title, presence: { message: 'Your work must have a title.' }
 
-      property :year, predicate: "http://www.europeana.eu/schemas/edm/year"
       property :year, predicate: "http://www.europeana.eu/schemas/edm/year" do |index|
         index.as :stored_searchable
       end
