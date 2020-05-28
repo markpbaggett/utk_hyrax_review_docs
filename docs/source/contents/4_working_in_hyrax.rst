@@ -688,5 +688,155 @@ Also, we can see our new field in search results:
 
 .. image:: ../images/year_in_search_results.png
 
+===========================
+3. Make Our Field Facetable
+===========================
+
+Now, lets add our new field to the facets.
+
+As always, let's start with a feature / integration test! Let's add a few lines to our feature request
+`spec/features/search_image_spec.rb`:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 31-32
+
+    require 'rails_helper'
+
+    RSpec.feature 'Search for an image' do
+      let(:title) { ['Journey to Skull Island'] }
+      let(:creator) { ['Quest, Jane'] }
+      let(:keyword) { ['Pirates', 'Adventure'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let(:year) { ['1520'] }
+      let(:image) do
+        Image.new(title: title,
+                 creator: creator,
+                 keyword: keyword,
+                 visibility: visibility,
+                 year: year)
+      end
+
+      context 'general search' do
+        before do
+          image.save
+        end
+        scenario "Search for an image" do
+          visit("/")
+          fill_in "q", with: "Journey"
+          click_button "Go"
+          # Uncomment this to display the HTML capybara is seeing
+          # puts page.body
+          expect(page).to have_content image.title.first
+          expect(page).to have_content image.creator.first
+          expect(page).to have_content image.keyword.first
+          expect(page).to have_content image.year.first
+          expect(page).to have_xpath("//h3", text: "Creator")
+          expect(page).to have_link(image.creator.first, class: "facet_select")
+        end
+      end
+    end
+
+Everything should pass here as our new tests are for things that already exist.
+
+Now let's break things by adding tests for things that don't yet exist:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 33-34
+
+    require 'rails_helper'
+
+    RSpec.feature 'Search for an image' do
+      let(:title) { ['Journey to Skull Island'] }
+      let(:creator) { ['Quest, Jane'] }
+      let(:keyword) { ['Pirates', 'Adventure'] }
+      let(:visibility) { Hydra::AccessControls::AccessRight::VISIBILITY_TEXT_VALUE_PUBLIC }
+      let(:year) { ['1520'] }
+      let(:image) do
+        Image.new(title: title,
+                 creator: creator,
+                 keyword: keyword,
+                 visibility: visibility,
+                 year: year)
+      end
+
+      context 'general search' do
+        before do
+          image.save
+        end
+        scenario "Search for an image" do
+          visit("/")
+          fill_in "q", with: "Journey"
+          click_button "Go"
+          # Uncomment this to display the HTML capybara is seeing
+          # puts page.body
+          expect(page).to have_content image.title.first
+          expect(page).to have_content image.creator.first
+          expect(page).to have_content image.keyword.first
+          expect(page).to have_content image.year.first
+          expect(page).to have_xpath("//h3", text: "Creator")
+          expect(page).to have_link(image.creator.first, class: "facet_select")
+          expect(page).to have_xpath("//h3", text: "Year")
+          expect(page).to have_link(image.year.first, class: "facet_select")
+        end
+      end
+    end
+
+Now, let's make our field facetable. Let's open our image model at `app/models/image.rb` and add a property to make
+year facetable:
+
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 12
+
+    # Generated via
+    #  `rails generate hyrax:work Image`
+    class Image < ActiveFedora::Base
+      include ::Hyrax::WorkBehavior
+
+      self.indexer = ImageIndexer
+      # Change this to restrict which works can be added as a child.
+      # self.valid_child_concerns = []
+      validates :title, presence: { message: 'Your work must have a title.' }
+
+      property :year, predicate: "http://www.europeana.eu/schemas/edm/year" do |index|
+        index.as :stored_searchable, :facetable
+      end
+
+      property :photographer, predicate: "http://id.loc.gov/vocabulary/relators/pht"
+
+      # This must be included at the end, because it finalizes the metadata
+      # schema (by adding accepts_nested_attributes)
+      include ::Hyrax::BasicMetadata
+    end
+
+We also need to add our new facet to our controller at `app/controllers/catalog_controller.rb`:
 
 
+.. code-block:: ruby
+    :linenos:
+    :emphasize-lines: 6
+
+    # solr fields that will be treated as facets by the blacklight application
+    #   The ordering of the field names is the order of the display
+    config.add_facet_field solr_name("human_readable_type", :facetable), label: "Type", limit: 5
+    config.add_facet_field solr_name("resource_type", :facetable), label: "Resource Type", limit: 5
+    config.add_facet_field solr_name("creator", :facetable), limit: 5
+    config.add_facet_field solr_name("year", :facetable), label: "Year", limit: 5
+    config.add_facet_field solr_name("contributor", :facetable), label: "Contributor", limit: 5
+    config.add_facet_field solr_name("keyword", :facetable), limit: 5
+    config.add_facet_field solr_name("subject", :facetable), limit: 5
+    config.add_facet_field solr_name("language", :facetable), limit: 5
+    config.add_facet_field solr_name("based_near_label", :facetable), limit: 5
+    config.add_facet_field solr_name("publisher", :facetable), limit: 5
+    config.add_facet_field solr_name("file_format", :facetable), limit: 5
+    config.add_facet_field solr_name('member_of_collection_ids', :symbol), limit: 5, label: 'Collections', helper_method: :collection_title_by_id
+
+Now, all tests should pass again.
+
+Also, we can see year in facets:
+
+.. image:: ../images/year_in_facets.png
+
+**NOTE**: if your facet doesn't show up, you may need to reindex the Solr documents in question.
