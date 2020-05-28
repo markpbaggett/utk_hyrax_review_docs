@@ -684,3 +684,9 @@ To do this, edit `app/controllers/catalog_controller.rb` and look for the sectio
 
 Now, if we run our test `rspec spec/features/search_image_spec.rb` it should pass.
 
+Also, we can see our new field in search results:
+
+.. image:: ../images/year_in_search_results.png
+
+
+
