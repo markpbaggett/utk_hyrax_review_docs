@@ -70,6 +70,77 @@ ensures that you can resolve data by using HTTP.
 Principle 3:  When someone looks up a URI, provide useful information
 =====================================================================
 
+In addition to using HTTP, principle 3 states that your URI should often be resolvable if not all the time. To do this,
+your URI should link to another existing web resource or you should create or **mint** a web resource if one does not
+exist. In either case, your URI should resolve to useful and machine actionable descriptions of the thing you've named.
+
+Let's say we **minted** a web resource to describe the Ruby programming language.  That web resource may look something
+like this:
+
+.. code-block:: turtle
+    :linenos:
+    :emphasize-lines: 7
+
+    @prefix utksubect: <http://[address-to-triplestore]/subjects/> .
+    @prefix rdf: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+    <utksubject:1>
+        a skos:Concept ;
+        rdf:label "Ruby (Computer program language)".
+
+You can see our web resource `http://[address-to-triplestore]/subjects/1` has a label "Ruby (Computer program language)"
+and is a `skos:Concept <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>`_.
+
+
 ========================================
 Principle 4: Include links to other URIs
 ========================================
+
+Finally, the URIs you link to should link to other things.  This is what makes linked data "linked."  For example, let's
+improve our **minted object**.
+
+.. code-block:: turtle
+    :linenos:
+    :emphasize-lines: 9
+
+    @prefix utksubect: <http://[address-to-triplestore]/subjects/> .
+    @prefix rdf: <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix schema: <https://schema.org/> .
+
+    <utksubject:1>
+        a skos:Concept ;
+        rdf:label "Ruby (Computer program language)" ;
+        schema:sameAs <http://id.loc.gov/authorities/subjects/sh00000128> .
+
+Notice, that our **minted object** links to another RDF resource. The relationship tells our application and other
+applications linking to our application that `<utksubject:1>` is the same thing as `this <http://id.loc.gov/authorities/subjects/sh00000128>`_.
+Also, the URI that is the sameAS our `<utksubject:1>` has actionable data and links to other actionable things:
+
+.. code-block:: turtle
+    :linenos:
+
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix ns0: <http://purl.org/vocab/changeset/schema#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+    <http://id.loc.gov/authorities/subjects/sh00000128>
+      a skos:Concept ;
+      skos:prefLabel "Ruby (Computer program language)"@en ;
+      skos:broader <http://id.loc.gov/authorities/subjects/sh2006006405> ;
+      skos:closeMatch <http://data.bnf.fr/ark:/12148/cb144105976>, <http://www.wikidata.org/entity/Q161053>, <http://id.worldcat.org/fast/1101038> ;
+      skos:inScheme <http://id.loc.gov/authorities/subjects> ;
+      skos:changeNote [
+        a <http://purl.org/vocab/changeset/schema#ChangeSet> ;
+        ns0:subjectOfChange <http://id.loc.gov/authorities/subjects/sh00000128> ;
+        ns0:creatorName <http://id.loc.gov/vocabulary/organizations/dlc> ;
+        ns0:createdDate "2000-08-31T00:00:00"^^xsd:dateTime ;
+        ns0:changeReason "new"^^xsd:string
+      ], [
+        a ns0:ChangeSet ;
+        ns0:subjectOfChange <http://id.loc.gov/authorities/subjects/sh00000128> ;
+        ns0:creatorName <http://id.loc.gov/vocabulary/organizations/abau> ;
+        ns0:createdDate "2006-12-05T07:51:11"^^xsd:dateTime ;
+        ns0:changeReason "revised"^^xsd:string
+      ] .
