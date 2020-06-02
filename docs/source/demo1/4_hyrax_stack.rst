@@ -26,7 +26,7 @@ Interaction with Solr also happens via an HTTP API.
 Middleware
 ==========
 
-1. **`hydra-head <https://github.com/projecthydra/hydra-head>`_**:  This is one of those things I've heard about for years but never really understood.  This is a Ruby-on-Rails gem containing the core code for a web application using the full stack of Samvera building blocks. This is maybe similar to the old `islandora/islandora <https://github.com/islandora/islandora>`_ from Islandora 7.
+1. `hydra-head <https://github.com/projecthydra/hydra-head>`_:  This is one of those things I've heard about for years but never really understood.  This is a Ruby-on-Rails gem containing the core code for a web application using the full stack of Samvera building blocks. This is maybe similar to the old `islandora/islandora <https://github.com/islandora/islandora>`_ from Islandora 7.
 2. **active-fedora**: Ruby on Rails normally follows the Active Record pattern to persist objects to its database. In Hyrax, an alternative pattern called ActiveFedora is used to persist objects to Fedora.
 3. **ldp**: A ruby gem called ldp is used to implement the LDP (Linked Data Platform) interaction patterns for interaction with containers in Fedora.
 4. **rsolr**: Rsolr is a ruby client for interacting with Solr.
@@ -38,4 +38,4 @@ Other things
 
 1. **Queuing System and Redis**: Hyrax does not package a default queuing back-end. There are a lot flavors here (**Sidekiq**, **Resque**, and **DelayedJob**) but they all have **Redis** as a dependency.  `Sidekiq <https://github.com/samvera/hyrax/wiki/Using-Sidekiq-with-Hyrax>`_ is most popular.
 2. **Postgres**: You of course need a database layer of some kind and most of the Rails world prefers Postgres over Maria / MySQL. In my investigation, I haven't found any institutions not using PostGres except for testing.
-3. *An External Triple Store?*: You may be wondering, where is the triple store!? Hyrax does not package one and it is entirely optional based on your needs.
+3. *An External Triple Store?*: You may be wondering, where is the external triple store for storing minted objects? Hyrax does not package one and it is entirely optional based on your needs.
