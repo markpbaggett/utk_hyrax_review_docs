@@ -22,6 +22,7 @@ setup(
             "sphinx-markdown-tables >= 0.0.9",
             "recommonmark >=0.5.0",
             "sphinx-bootstrap-theme >= 0.6.5",
+            "sphinxemoji >= 0.1.6",
         ]
     },
     classifiers=[
