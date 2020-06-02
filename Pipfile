@@ -11,6 +11,7 @@ sphinxcontrib-napoleon = "*"
 sphinx-markdown-tables = "*"
 recommonmark = "*"
 sphinx-bootstrap-theme = "*"
+sphinxemoji = "*"
 
 [requires]
 python_version = "3.8"
