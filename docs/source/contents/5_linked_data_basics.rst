@@ -90,7 +90,7 @@ like this:
         rdf:label "Ruby (Computer program language)".
 
 You can see our web resource `http://[address-to-triplestore]/subjects/1` has a label "Ruby (Computer program language)"
-and is a `skos:Concept <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>`_.
+and has a `rdf:type` `skos:Concept <https://www.w3.org/2009/08/skos-reference/skos.html#Concept>`_.
 
 
 ========================================
