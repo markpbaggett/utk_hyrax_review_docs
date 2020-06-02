@@ -10,30 +10,30 @@ The 5 Star Scoring System of Linked Data
 
 There is a five scoring system for defining the quality of linked data.  It is:
 
-|:star2:| Data is available on the Web, in whatever format (for example, a TIFF of a scanned image)
+    |:star2:| Data is available on the Web, in whatever format (for example, a TIFF of a scanned image)
 
-|:star2:| |:star2:| Data is available as machine-readable structured data (for example, a Microsoft Excel spreadsheet)
+    |:star2:| |:star2:| Data is available as machine-readable structured data (for example, a Microsoft Excel spreadsheet)
 
-|:star2:| |:star2:| |:star2:| Data is available in a non-proprietary format (for example, a CSV, a TSV, or and XML file)
+    |:star2:| |:star2:| |:star2:| Data is available in a non-proprietary format (for example, a CSV, a TSV, or and XML file)
 
-|:star2:| |:star2:| |:star2:| |:star2:| Data is published using open data standards from the World Wide Web Consortium.
+    |:star2:| |:star2:| |:star2:| |:star2:| Data is published using open data standards from the World Wide Web Consortium.
 
-|:star2:| |:star2:| |:star2:| |:star2:| |:star2:| All of the above apply, plus links to other people's data.
+    |:star2:| |:star2:| |:star2:| |:star2:| |:star2:| All of the above apply, plus links to other people's data.
 
 This 5-star system is cumulative; each succeeding star presumes that your data meets the criteria from all proceeding
 stars.
 
 The W3C often paraphrases the 5 star ( |:star2:| ) system as:
 
-|:star2:| On the web
+    |:star2:| On the web
 
-|:star2:| |:star2:| Machine-readable data
+    |:star2:| |:star2:| Machine-readable data
 
-|:star2:| |:star2:| |:star2:| Non-proprietary format
+    |:star2:| |:star2:| |:star2:| Non-proprietary format
 
-|:star2:| |:star2:| |:star2:| |:star2:| RDF standards
+    |:star2:| |:star2:| |:star2:| |:star2:| RDF standards
 
-|:star2:| |:star2:| |:star2:| |:star2:| |:star2:| Linked RDF
+    |:star2:| |:star2:| |:star2:| |:star2:| |:star2:| Linked RDF
 
 Resource description framework (RDF) is used for the best quality linked data.
 
