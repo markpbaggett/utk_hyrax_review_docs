@@ -149,3 +149,27 @@ In the partial, we will specify our data source:
 Now, when you add a new subject, it will **question** LCSH:
 
 .. image:: ../images/Autocomplete.gif
+
+Next Steps
+----------
+
+I still need to show these things.
+
+=========================================
+1. Activating a dropdown with authorities
+=========================================
+
+=========================
+2. Leveraging Linked Data
+=========================
+
+In Hyrax, Linked Data can be leveraged in other ways.  I need to show:
+
+1. Fetching current label for a URI from an authority or a cache of the authority.
+2. Including additional information for a term from the same authority.
+3. Including additional information for a term from additional authorities.
+
+See More
+--------
+
+1. `Architecture for Authority Lookup <https://wiki.lyrasis.org/display/ld4lLABS/Architecture+for+Authority+Lookup>`_
