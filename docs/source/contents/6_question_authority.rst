@@ -173,3 +173,5 @@ See More
 --------
 
 1. `Architecture for Authority Lookup <https://wiki.lyrasis.org/display/ld4lLABS/Architecture+for+Authority+Lookup>`_
+2. `Using Questioning Authority Gem to access Linked Data for Hydra and Beyond <https://docs.google.com/presentation/d/12wxAgsMC0C03IJcX18QLT6VhmKPgbWq6LmGTVSOfEw8/edit#slide=id.g202f49a705_2_117>`_
+3. `Linked Data in Hyrax <https://docs.google.com/presentation/d/1tlbjvIt-V9D11TJZ8zHNZBwTUOtREGWlMoUKvJX1sI4/edit#slide=id.g1daf2d4a0f_2_19>`_
