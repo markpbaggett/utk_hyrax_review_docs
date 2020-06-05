@@ -4,8 +4,8 @@
 This section includes my thoughts, notes, etc. on uploading new objects, managing existing objects, batch ingestion, and
 migrating collections to Hyrax.
 
-IMLS Grant: Designing a Migration Path
---------------------------------------
+1. IMLS Grant: Designing a Migration Path
+-----------------------------------------
 
 In 2018, Fedora Commons Inc. (that's a thing?) and Duraspace received a `50,000 grant <https://www.imls.gov/grants/awarded/lg-72-18-0204-18>`_
 to investigate barriers to upgrading unsupported versions of the Fedora repository platform to Fedora 4 or later.
@@ -114,3 +114,20 @@ From Gaps and Analysis:
 From Conclusions:
 
     While the Islandora community has taken longer to release a version of Islandora that supports Fedora 4.x and higher, their use of Drupal and a common application framework has given them a huge advantage in terms of developing migration tools that will support a majority of use cases in the Islandora community. The greatest gaps in support are therefore with custom Fedora 3.x repositories and those that are using Samvera tools but not a common application like Sufia or Hyrax. By taking migration-utils as a starting point and gathering requirements for improvements it would be possible to support a greater number of migration projects throughout the community.
+
+2. Thinking about Designing a Migration Path and Moving our data to Hyrax from Islandora
+----------------------------------------------------------------------------------------
+
+The findings of this grant are interesting and thought-provoking particularly for our use case. In the environtmental
+scanning and institutional profiling of the grant, the team doesn't review or cover institutions who would be jumping
+from Islandora and Fedora 3 to Samvera and Fedora 4 or later.  Because of this, our use case would likely be closest to
+the custom solution category.
+
+This is because our Fedora 3 objects are tightly-bound with Islandora 7. Simply migrating these objects from Fedora 3 to
+Fedora 4 would not make them interoperable with Hyrax because certain elements would be missing and our objects would be
+quite different than what Hyrax would expect.
+
+
+
+
+
