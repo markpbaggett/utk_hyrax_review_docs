@@ -22,6 +22,15 @@ This section contains all content related to Demo 1 on May 21, 2020.
 
    demo1/*
 
+Demo 2: Migration, Upload, and Batch Ingest
+-------------------------------------------
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   demo2/*
+
 Mark's Musings, Thoughts, and Other Ramblings
 ---------------------------------------------
 
