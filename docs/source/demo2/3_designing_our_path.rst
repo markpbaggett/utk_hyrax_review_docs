@@ -11,6 +11,9 @@ is no Portland Common Data Model.  Simply migrating these objects from Fedora 3 
 interoperable with Hyrax because certain elements would be missing and our objects would be quite different than what
 Hyrax would expect.
 
+Thinking about Migration
+------------------------
+
 Let's start by thinking about a book in Islandora 7 / Fedora 3:
 
 .. image:: ../images/islandora7_book.png
@@ -18,3 +21,10 @@ Let's start by thinking about a book in Islandora 7 / Fedora 3:
 Now what might that same book look like in Hyrax?
 
 .. image:: ../images/hyrax_book.png
+
+I promised some of you that I would not show any |:turtle:| this time, but as a concession let's have a quick quiz just
+to make sure we are all on the same page:
+
+1. What are some differences between a pcdm:Object and a pcdm:File?
+2. I left out the technical metadata datastream in the Hyrax book image?  If I added the contents back to this image, where would it be?
+
