@@ -15,3 +15,6 @@ Let's start by thinking about a book in Islandora 7 / Fedora 3:
 
 .. image:: ../images/islandora7_book.png
 
+Now what might that same book look like in Hyrax?
+
+.. image:: ../images/hyrax_book.png
