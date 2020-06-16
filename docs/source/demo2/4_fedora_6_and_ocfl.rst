@@ -95,6 +95,7 @@ So Why Is OCFL Important?
 =========================
 
 |:star:| Longterm disaster preparedness
+
 |:star:| Ability to rebuild a repository from contents on disk
 
 ==========================================================================
@@ -140,3 +141,34 @@ Who is implementing and building tooling for OCFL?
 |:star:| University of Technology, Sydney - Javascript client
 
 |:star:| Brown University - Clojure HTTP server (Hyrax shop)
+
+==================================
+Example of a Versioned OCFL Object
+==================================
+
+So what does an example of an OCFL object look like?
+
+.. code-block:: text
+
+    object_root
+    ├── 0=ocfl_object_1.0
+    ├── inventory.json
+    ├── inventory.json.sha512
+    ├── v1
+    │   ├── inventory.json
+    │   ├── inventory.json.sha512
+    │   └── content
+    │       ├── empty.txt
+    │       ├── foo
+    │       │   └── bar.xml
+    │       └── image.tiff
+    ├── v2
+    │   ├── inventory.json
+    │   ├── inventory.json.sha512
+    │   └── content
+    │       └── foo
+    │           └── bar.xml
+    └── v3
+        ├── inventory.json
+        └── inventory.json.sha512
+
