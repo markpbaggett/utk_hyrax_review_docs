@@ -7,14 +7,15 @@ A Brief History of Batch Ingest in Hyrax Land
 As you can imagine, there are a **myriad** of ways to batch upload content into Hyrax.  Everyone seems to do it
 differently based on their own use cases, work types, and environments.
 
-For instance, Northwestern's `"Donut" <https://github.com/nulib/donut>`_ (|:doughnut:|) is tightly bound to their work
-types and their use of Amazon S3 and buckets. UCSB's `"Alexandria" <https://gitlab.com/ucsb-library/alexandria>`_ has
-numerous batch features including ingest based on MODS. Buffalo and Boston Public Library have batch ingests based on
-CSVs. George Washington has a batch importer that takes a ZIP from Proquest, expands it, takes an XML file, converts that
-data to JSON, and passes it to Rake and Rails for ingest into their Hyrax application and Fedora. Curation Experts
-created a tool called `Darlingtonia <https://github.com/curationexperts-deprecated/darlingtonia>`_ that originally
-focused on making it easier to move from Digital Commons and Digital Commons workflows to Hyrax.  I should say that this
-has now been replaced by something called `Zizia <https://github.com/curationexperts/zizia>`_.
+For instance:
+
+|:star:| Northwestern's `"Donut" <https://github.com/nulib/donut>`_ (|:doughnut:|) is tightly bound to their work types and their use of Amazon S3 and buckets.
+
+|:star:|  UCSB's `"Alexandria" <https://gitlab.com/ucsb-library/alexandria>`_ has numerous batch features including ingest based on MODS. Buffalo and Boston Public Library have batch ingests based on CSVs.
+
+|:star:|  George Washington has a batch importer that takes a ZIP from Proquest, expands it, takes an XML file, converts that data to JSON, and passes it to Rake and Rails for ingest into their Hyrax application and Fedora.
+
+|:star:|  Curation Experts created a tool called `Darlingtonia <https://github.com/curationexperts-deprecated/darlingtonia>`_ that originally focused on making it easier to move from Digital Commons and Digital Commons workflows to Hyrax.  I should say that this has now been replaced by something called `Zizia <https://github.com/curationexperts/zizia>`_.
 
 I can't really do this justice, so I'm going to point at a somewhat old `thread <https://groups.google.com/forum/#!topic/samvera-tech/a7P4Y2TY590>`_
 (over 2 years old) on batch in Hyrax in general.  Eben English sums up things quite nicely in the original post:
