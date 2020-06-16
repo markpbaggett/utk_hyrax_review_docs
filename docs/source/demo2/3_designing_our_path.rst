@@ -29,8 +29,9 @@ to make sure we are all on the same page |:smiling_imp:|:
 Quiz
 ====
 
-1. What are some differences between a pcdm:Object and a pcdm:File?
-2. I left out the technical metadata datastream in the Hyrax book image?  If I added the contents back to this image, where would it be?
+|:star:| What are some differences between a pcdm:Object and a pcdm:File?
+
+|:star:| I left out the technical metadata datastream in the Hyrax book image?  If I added the contents back to this image, where would it be?
 
 =====================
 Using migration-utils
@@ -67,5 +68,7 @@ Discuss
 -------
 
 |:star:| What is different from the Hyrax book?
+
 |:star:| What is missing?
+
 |:star:| What work would need to be done post-Fedora migration?
