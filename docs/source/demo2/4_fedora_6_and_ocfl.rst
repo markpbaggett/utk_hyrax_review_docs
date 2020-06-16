@@ -128,19 +128,19 @@ No, Beta 0.3 was released in June 2019.  Version 1.0 should be released **soon**
 Who is implementing and building tooling for OCFL?
 ==================================================
 
-|:star:| Johns Hopkins University - Go client
+|:star:| Johns Hopkins University - `Go client <https://github.com/birkland/ocfl>`_
 
-|:star:| Cornell University - Python client, validator (Hyrax shop)
+|:star:| Cornell University - `Python client, validator <https://github.com/zimeon/ocfl-py>`_ (Hyrax shop)
 
-|:star:| Penn State - Go client (Hyrax shop)
+|:star:| Penn State - `Go client <https://github.com/srerickson/floc>`_ (Hyrax shop)
 
-|:star:| University of Wisconsin, Madison - Java client (Hyrax shop)
+|:star:| University of Wisconsin, Madison - `Java client <https://github.com/UW-Madison-Library/ocfl-java>`_ (Hyrax shop)
 
-|:star:| Stanford - Ruby client, validator, and test suite (Hyrax shop plus dozens of other Samvera flavors)
+|:star:| Stanford - `Ruby client, validator, and test suite <https://github.com/sul-dlss-labs/OCFL-Tools>`_ (Hyrax shop plus dozens of other Samvera flavors)
 
-|:star:| University of Technology, Sydney - Javascript client
+|:star:| University of Technology, Sydney - `Javascript client <https://github.com/uts-eresearch/ocfl-js>`_
 
-|:star:| Brown University - Clojure HTTP server (Hyrax shop)
+|:star:| Brown University - `Clojure HTTP server <https://github.com/bcail/ocfl-http>`_ (Hyrax shop)
 
 ==================================
 Example of a Versioned OCFL Object
