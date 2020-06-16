@@ -22,12 +22,12 @@ Now what might that same book look like in Hyrax?
 
 .. image:: ../images/hyrax_book.png
 
-I promised some of you that I would not show any |:turtle:| this time, but as a concession let's have a quick quiz just
-to make sure we are all on the same page |:smiling_imp:|:
+I promised some of you that I would not show any |:turtle:| this time, but as a concession let's have a quick refresher
+just to make sure we are all on the same page |:smiling_imp:|:
 
-====
-Quiz
-====
+================
+Quiz / Refresher
+================
 
 |:star:| What are some differences between a pcdm:Object and a pcdm:File?
 
@@ -38,7 +38,7 @@ Using migration-utils
 =====================
 
 Remember from the previous page, we would not be like most Islandora or Samvera instituions. We would be more akin to
-custom Fedora shops.  For that reason, `migration-utils` would make most sense to us if we care about migrating our data
+custom Fedora shops.  For that reason, **migration-utils would make most sense to us** if we care about migrating our data
 from our custom Fedora instance instead of exporting it.
 
 Also, remember some other findings:
