@@ -4,7 +4,26 @@ Planning for Final Demo and Reference Materials
 Final Demo Requirements
 -----------------------
 
+==========================================================
+Migrate two collections into the proof of concept platform
+==========================================================
 
+1. Knoxville Garden Slides - image collection with ​ some linked data ready metadata​ (subjects,
+access conditions)
+2. Druid - collection with several books containing associated images
+
+=============
+Configuration
+=============
+
+1. Minimal
+2. Allow us to review functional requirements including Uploading, ingesting, and migrating processes and Mapping metadata for objects and collections
+3. Browseable view of collections with search
+4. Search results viw with collection level view and associated items plus metadata
+5. Item view with enabled viewers and metadata configured for display
+6. Demonstrate how metadata from the search index is configured for display and
+search
+7.Demonstrate how to access the IIIF manifest for objects and / or associated binaries
 
 Reference Materials
 -------------------
