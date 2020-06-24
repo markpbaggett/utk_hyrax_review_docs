@@ -193,3 +193,15 @@ Guess what?  It works!
     }
 
 Uh oh!  So we fixed publishing our manifest, but what actually fixed it? I do not know.
+
+===========================================
+What actually fixed it and How to Replicate
+===========================================
+
+The most important thing is to make sure your rIIIF server is running.  To do this, in **config/initializers/hyrax.rb**
+change the following line to **true**:
+
+.. code-block:: ruby
+
+    # Default is false
+    config.iiif_image_server = true
