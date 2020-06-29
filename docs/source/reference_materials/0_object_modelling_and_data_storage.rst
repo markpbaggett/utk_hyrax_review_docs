@@ -32,7 +32,7 @@ Below is a visualization of a collection, with an image, a file set, a file, and
 generated with `Ontology Visualization <https://github.com/usc-isi-i2/ontology-visualization>`_.  Since Hyrax and
 Fedora 4+ are built on Linked Data Platform, I've removed dozens of relationships to simplify the diagram.
 
-.. image:: ../images/vizualizing_pcdm.png
+.. image:: ../images/visualizing_pcdm.png
 
 If you'd prefer to see RDF representations of the Fedora containers, you can see those here.
 
