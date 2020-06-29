@@ -11,6 +11,17 @@ repository solution.  This investigation is driven by UT Libraries'
 `Next Generation Digital Repository Solution <https://drive.google.com/file/d/1nsqoQlfJN4Cn-RJxLUO1A0MFD-s-pQNr/view?usp=sharing>`_.
 
 
+Reference Materials for Final Demo
+----------------------------------
+
+The final demo lists several required reference materials for submission.  This section includes those.
+
+.. toctree::
+   :maxdepth: 1
+   :glob:
+
+   reference_materials/*
+
 Demo 1: Content Models, Metadata, and the Stack
 -----------------------------------------------
 
