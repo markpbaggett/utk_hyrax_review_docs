@@ -38,7 +38,86 @@ Fedora 4+ are built on Linked Data Platform, I've removed dozens of relationship
 
     Click the Image to Zoom In and See Relationships
 
-If you'd prefer to see RDF representations of the Fedora containers, you can see those here.
+If you'd prefer to see RDF representations of the Fedora containers, you can see those below.
+
+Let's dissect a little bit of what is happening here.
+
+=====================
+The Collection Object
+=====================
+
+The **collection** object (ns4:gm80hv32k / Knoxville Gardens Slides) is an instance of (rdf:type):
+
+* fmodels:Resource
+* ldp:Container
+* fmodels:Container
+* pcdm:Collection
+* hydra:Collection
+
+It has a webacl:accesscontrol that governs who can view it and manage it.
+
+It also has a fmodels:hasParent ns10:dev which is our Fedora repository.
+
+==============
+The Hydra Work
+==============
+
+The **Work** (ns1:pr76f340k / Tulip Tree) is an instance of (rdf:type):
+
+* fmodels:Resource
+* ldp:Container
+* fmodels:Container
+* ldp:RDFSource
+* pcdm:Object
+* hydra:Work
+
+It has a webacl:accesscontrol that governs who can view it and manage it.
+
+It is a pcdm:memberOf our collection object.
+
+It also has the following relationships with our fileset:
+
+* pcdm:hasMember
+* ebucore:hasRelatedImage
+* ebucore:hasRelatedMediaFragment
+
+===========
+The Fileset
+===========
+
+The **Fileset** (ns2:9p2909328 / OBJ Datastream.tiff) is an instance of (has rdf:type relationships):
+
+* fmodels:Resource
+* ldp:Container
+* fmodels:Container
+* ldp:RDFSource
+* fmodels:Container
+* pcdm:Object
+* hydra:FileSet
+
+It has a webacl:accesscontrol that governs who can view it and manage it.
+
+It has a pcdm:hasFile relationship to our file.
+
+========
+The File
+========
+
+The **File** (ns6:68a58b55-6ccd-401f-9c77-7e341e1c6748 / OBJ Datastream.tiff) is an instance of (has rdf:type relationships):
+
+* fmodels:Resource
+* fmodels:Binary
+* pcdmuse:OriginalFile
+* pcdm:File
+* ldpNonRDFResource
+
+It has a fmodels:hasParent to ns11:files with is a Fedora resource to represent all files in our Fedora instance.
+
+It has a fmodels:hasVersions that points at a resource that represents the versions of this file.
+
+==========
+The Turtle
+==========
 
 We've looked at diagrams, but what's actually in Fedora?  In Fedora 3.8, we have this concept of object, but that idea
 does not exist in a post Fedora 3.8 world. Instead, we have containers and binaries.  Let's look at the containers for
