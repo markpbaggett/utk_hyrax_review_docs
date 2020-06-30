@@ -465,6 +465,12 @@ Complex Mappings Option
     @prefix geojson: <https://purl.org/geojson/vocab#> .
     @prefix pcdm: <http://pcdm.org/models#> .
     @prefix dbo: <http://dbpedia.org/ontology/> .
+    @prefix identifiers: <http://id.loc.gov/vocabulary/identifiers> .
+    @prefix edm: <http://www.europeana.eu/schemas/edm/> .
+    @prefix rdau: <http://rdaregistry.info/Elements/u/#> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
+    @prefix owl: <https://www.w3.org/2002/07/owl#> .
 
     <fedoraObject:tq/57/nr/06/tq57nr067>
         dce:title <utktitles:1> ;
