@@ -455,7 +455,6 @@ Complex Mappings Option
     @prefix utksubjects: <http://[address-to-triplestore]/subjects/> .
     @prefix utkspatial: <http://[address-to-triplestore]/spatial/> .
     @prefix utknotes: <http://[address-to-triplestore]/notes/> .
-    @prefix utknames: <http://[address-to-triplestore]/names/> .
     @prefix utkphysicalcollections: <http://[address-to-triplestore]/physicalcollections/> .
     @prefix rdfs: <https://www.w3.org/TR/rdf-schema/> .
     @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
@@ -466,7 +465,6 @@ Complex Mappings Option
     @prefix geojson: <https://purl.org/geojson/vocab#> .
     @prefix pcdm: <http://pcdm.org/models#> .
     @prefix dbo: <http://dbpedia.org/ontology/> .
-    @prefix dce: <http://purl.org/dc/elements/1.1/> .
     @prefix identifiers: <http://id.loc.gov/vocabulary/identifiers> .
     @prefix edm: <http://www.europeana.eu/schemas/edm/> .
     @prefix rdau: <http://rdaregistry.info/Elements/u/#> .
@@ -475,73 +473,73 @@ Complex Mappings Option
     @prefix owl: <https://www.w3.org/2002/07/owl#> .
 
     <fedoraObject:tq/57/nr/06/tq57nr067>
-        dce:title utktitles:1 ;
+        dce:title <utktitles:1> ;
         identifiers:local "0012_000463_000214", "record_spc_4489", "Slide 1", "Film 96" ;
         dcterms:identifier "knoxgardens:115" ;
         dcterms:abstract "Photograph slide of the Tennessee state tree, the tulip tree" ;
-        bf:provisionActivity utkevents:1, utkevents:2, utkevents:3 ;
+        bf:provisionActivity <utkevents:1>, <utkevents:2>, <utkevents:3> ;
         edm:hastype <http://vocab.getty.edu/aat/300134977> ;
         rdau:extent "3 1/4 x 5 inches" ;
         dce:format "image/jp2" ;
-        relators:pht utknames:1 ;
-        dcterms:subject utksubjects:1, utksubjects:2, utksubjects:3, utksubjects:4 ;
-        dcterms:spatial utkspatial:1 ;
-        bf:Note utknotes:1 ;
+        relators:pht <utknames:1> ;
+        dcterms:subject <utksubjects:1>, <utksubjects:2>, <utksubjects:3>, <utksubjects:4> ;
+        dcterms:spatial <utkspatial:1> ;
+        bf:Note <utknotes:1> ;
         pcdm:memberOf <fedoraObject:jk/88/99/adklasd908ads> ;
         relators:rps <http://id.loc.gov/authorities/names/no2014027633> ;
         bf:physicalLocation "University of Tennessee, Knoxville. Special Collections" ;
         edm:rights <http://rightsstatements.org/vocab/CNE/1.0/> .
 
-    utktitles:1
+    <utktitles:1>
         a bf:title ;
         rdfs:label "Tulip Tree" .
 
-    utkevents:1
+    <utkevents:1>
         a bf:provisionActivity ;
         dcterms:created "1930" ;
         skos:note "Date: Inferred" .
 
-    utkevents:2
+    <utkevents:2>
         a bf:provisionActivity ;
         dcterms:created "1939" ;
         skos:note "Date: Inferred" .
 
-    utkevents:3
+    <utkevents:3>
         a bf:provisionActivity ;
         dcterms:created "1930-1939" ;
         skos:note "Date: Inferred" .
 
-    utknames:1
+    <utknames:1>
         a foaf:person ;
         foaf:name "Unknown" .
 
-    utksubjects:1
+    <utksubjects:1>
         a skos:Concept ;
-        rdfs:label "Photography of gardens";
+        rdf:label "Photography of gardens";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
 
-    utksubjects:2
+    <utksubjects:2>
         a skos:Concept ;
-        rdfs:label "Gardens, American";
+        rdf:label "Gardens, American";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
 
-    utksubjects:3
+    <utksubjects:3>
         a skos:Concept ;
-        rdfs:label "Liriodendron tulipifera";
+        rdf:label "Liriodendron tulipifera";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85077428.html> .
 
-    utksubjects:4
+    <utksubjects:4>
         a skos:Concept ;
-        rdfs:label "Flowering trees";
+        rdf:label "Flowering trees";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85049328.tml> .
 
-    utkspatial:1
+    <utkspatial:1>
         a edm:Place ;
         rdfs:label "Knoxville (Tenn.)" ;
         owl:sameAs <http://id.loc.gov/authorities/names/n79109786> ;
         geojson:coordinates "35.96064, -83.92074" .
 
-    utknotes:1
+    <utknotes:1>
         a bf:Note ;
         rdfs:label "Mrs. A. C. Bruner donated this collection to the University of Tennessee. Creation dates were inferred from the dates associated with the archival collection and the activity dates of the Jim Thompson Company." .
 
@@ -549,7 +547,7 @@ Complex Mappings Option
         a pcdm:Collection ;
         rdfs:label "Knoxville Gardens Slides" .
 
-    utkphysicalcollections:1
+    <utkphysicalcollections:1>
         a dcmitype:Collection ;
         rdfs:label "Knoxville Gardens Slides" ;
         owl:sameAs <https://n2t.net/ark:/87290/v88w3bgf> .
