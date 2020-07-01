@@ -471,6 +471,7 @@ Complex Mappings Option
     @prefix foaf: <http://xmlns.com/foaf/0.1/> .
     @prefix dcmitype: <http://purl.org/dc/dcmitype/> .
     @prefix owl: <https://www.w3.org/2002/07/owl#> .
+    @prefix dce: <http://purl.org/dc/elements/1.1/> .
 
     <fedoraObject:tq/57/nr/06/tq57nr067>
         dce:title <utktitles:1> ;
@@ -515,22 +516,22 @@ Complex Mappings Option
 
     <utksubjects:1>
         a skos:Concept ;
-        rdf:label "Photography of gardens";
+        rdfs:label "Photography of gardens";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
 
     <utksubjects:2>
         a skos:Concept ;
-        rdf:label "Gardens, American";
+        rdfs:label "Gardens, American";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
 
     <utksubjects:3>
         a skos:Concept ;
-        rdf:label "Liriodendron tulipifera";
+        rdfs:label "Liriodendron tulipifera";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85077428.html> .
 
     <utksubjects:4>
         a skos:Concept ;
-        rdf:label "Flowering trees";
+        rdfs:label "Flowering trees";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85049328.tml> .
 
     <utkspatial:1>
@@ -551,6 +552,7 @@ Complex Mappings Option
         a dcmitype:Collection ;
         rdfs:label "Knoxville Gardens Slides" ;
         owl:sameAs <https://n2t.net/ark:/87290/v88w3bgf> .
+
 
 
 
