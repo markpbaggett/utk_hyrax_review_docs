@@ -119,9 +119,9 @@ It has a fmodels:hasVersions that points at a resource that represents the versi
 The Turtle
 ==========
 
-We've looked at diagrams, but what's actually in Fedora?  In Fedora 3.8, we have this concept of object, but that idea
-does not exist in a post Fedora 3.8 world. Instead, we have containers and binaries.  Let's look at the containers for
-the things diagrammed above.
+We've looked at a visualization, but it this what's actually in Fedora? Yes. In Fedora 3.8, we have this concept of object, but that idea
+does not exist in a post Fedora 3.8 world. Instead, we have containers and binaries.  Below is turtle some turtle for
+the objects in the visualization above.
 
 **PLEASE NOTE:** For your viewing pleasure, I've stripped away most descriptive metadata and other non structural metadata
 in order to make things easier to understand.  We'll get to look at some of that later.
@@ -403,3 +403,15 @@ versus a public item.)
             ldp:contains           <http://localhost:8984/rest/dev/4f/9f/76/e5/4f9f76e5-8073-4278-b746-038c57ada57d/b5/c4/a0/37/b5c4a037-5259-4974-826a-64dadf3cf382> ;
             ldp:contains           <http://localhost:8984/rest/dev/4f/9f/76/e5/4f9f76e5-8073-4278-b746-038c57ada57d/63/e0/63/f0/63e063f0-b661-412f-9352-11c38df46582> ;
             ldp:contains           <http://localhost:8984/rest/dev/4f/9f/76/e5/4f9f76e5-8073-4278-b746-038c57ada57d/d1/b4/cb/2a/d1b4cb2a-599d-490f-97f1-f2faec657c47> .
+
+Data Stored in Fedora
+---------------------
+
+Data Stored in Postgres
+-----------------------
+
+Data Stored Elsewhere
+---------------------
+
+
+
