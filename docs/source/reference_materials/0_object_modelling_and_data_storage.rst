@@ -429,7 +429,72 @@ Each Collection, Object and File instance can be assigned its own Web ACL. For e
 image might be assigned a public ACL, but the high-resolution master image might be limited to a specific group of
 users.
 
-Rights metadata is also stored as triples.
+Let's look at some example data.
+
+A Fedora object may have a WebACL like this:
+
+.. code-block:: turtle
+
+    @prefix ns001:  <info:fedora/fedora-system:def/model#> .
+    @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+    @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+
+    <http://localhost:8984/rest/dev/f5/bd/e7/0b/f5bde70b-bc77-4536-96ef-6cbd9798b98f>
+            rdf:type               fedora:Container ;
+            rdf:type               fedora:Resource ;
+            fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:created         "2020-07-06T20:31:39.781Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            fedora:lastModified    "2020-07-06T21:17:58.424Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            ns001:hasModel         "Hydra::AccessControl"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            rdf:type               ldp:RDFSource ;
+            rdf:type               ldp:Container ;
+            fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+            fedora:hasParent       <http://localhost:8984/rest/dev> ;
+            ldp:contains           <http://localhost:8984/rest/dev/f5/bd/e7/0b/f5bde70b-bc77-4536-96ef-6cbd9798b98f/5f/23/4f/ab/5f234fab-2817-4a16-af1e-a2ced4f284f0> ;
+            ldp:contains           <http://localhost:8984/rest/dev/f5/bd/e7/0b/f5bde70b-bc77-4536-96ef-6cbd9798b98f/bb/da/75/84/bbda7584-45a3-4156-ba3f-9a3a86d6a150> ;
+            ldp:contains           <http://localhost:8984/rest/dev/f5/bd/e7/0b/f5bde70b-bc77-4536-96ef-6cbd9798b98f/b5/fc/46/9b/b5fc469b-b0ca-4b8b-a616-39715beed2f6> .
+
+This WebACL contains instances of fedora:Resource / fedora:Containers with specific policies and restrictions:
+
+.. code-block:: turtle
+    :linenos:
+    :emphasize-lines: 14, 18
+
+        @prefix ns001:  <info:fedora/fedora-system:def/model#> .
+        @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+        @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+        @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+        @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+        @prefix ns003:  <http://www.w3.org/ns/auth/acl#> .
+
+        <http://localhost:8984/rest/dev/f5/bd/e7/0b/f5bde70b-bc77-4536-96ef-6cbd9798b98f/5f/23/4f/ab/5f234fab-2817-4a16-af1e-a2ced4f284f0>
+                rdf:type               fedora:Container ;
+                rdf:type               fedora:Resource ;
+                fedora:lastModifiedBy  "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                ns003:mode             ns003:Write ;
+                ns001:hasModel         "Hydra::AccessControls::Permission"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                ns003:accessTo         <http://localhost:8984/rest/dev/86/23/hx/72/8623hx72q> ;
+                fedora:createdBy       "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+                fedora:created         "2020-07-06T20:31:39.884Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                fedora:lastModified    "2020-07-06T21:18:13.65Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+                ns003:agent            <http://projecthydra.org/ns/auth/person#mbagget1@utk.edu> ;
+                rdf:type               ldp:RDFSource ;
+                rdf:type               ldp:Container ;
+                fedora:writable        "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+                fedora:hasParent       <http://localhost:8984/rest/dev/f5/bd/e7/0b/f5bde70b-bc77-4536-96ef-6cbd9798b98f> .
+
+You can see that this specific policy limits access to an agent, mbagget1@utk.edu.
+
+Rights metadata is also stored as triples in Fedora. The Samvera community suggests two rights properties:
+
+1. edm:rights containing a URI designating the primary rights statement of the resource
+2. dcterms:rightsHolder containing a URI for the rights holder
+
+The Samvera Rights Metadata Working Group suggests several other properties for describing rights. You can see those
+`here <https://wiki.lyrasis.org/display/samvera/Rights+Metadata+Recommendation>`_.
 
 ====================
 Descriptive Metadata
@@ -456,6 +521,4 @@ Data Stored in Postgres
 
 Data Stored Elsewhere
 ---------------------
-
-
 
