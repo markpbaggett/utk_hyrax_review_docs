@@ -407,6 +407,50 @@ versus a public item.)
 Data Stored in Fedora
 ---------------------
 
+As you can see in the documentation above, all structural metadata is stored in Fedora. Additionally, there are several
+other things stored in Fedora.
+
+==================================
+Access Control and Rights Metadata
+==================================
+
+Rights metadata, what we thought of as XACML policies in Fedora 3.8, is different in Hyrax.  As Hyrax uses the Portland
+Common Data Model, it uses WebACLs to specify what actions users can perform on resources. As the PCDM website states:
+
+    Each ACL is created as its own resource which links to the users, resources, and actions allowed. Users and
+    resources can both be identified individually or using classes. The WebACL ontology includes several actions (read,
+    write, append, control).
+
+Historically, Samvera access control also had a discover permission. The PCDM documentation encourages adopters to
+create new actions for permissions they wish to assign separately (e.g., download). This too is done as an RDF triple
+and stored in Fedora.
+
+Each Collection, Object and File instance can be assigned its own Web ACL. For example, an Object and its thumbnail
+image might be assigned a public ACL, but the high-resolution master image might be limited to a specific group of
+users.
+
+Rights metadata is also stored as triples.
+
+====================
+Descriptive Metadata
+====================
+
+=====================
+Preservation Metadata
+=====================
+
+==================
+Technical Metadata
+==================
+
+=======================
+Administrative Metadata
+=======================
+
+====================
+Preservation Objects
+====================
+
 Data Stored in Postgres
 -----------------------
 
