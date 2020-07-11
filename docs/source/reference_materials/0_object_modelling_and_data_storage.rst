@@ -608,9 +608,58 @@ very basic configuration of Hyrax, a pcdm:File object may look something like th
 Administrative Metadata
 =======================
 
+Like other forms of metadata, Fedora also contains our administrative metadata as RDF triples.
+
+.. code-block:: turtle
+
+    @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix hydraworks:  <http://projecthydra.org/works/models#> .
+    @prefix dcterms:  <http://purl.org/dc/terms/> .
+    @prefix fedorasystem:  <info:fedora/fedora-system:def/model#> .
+    @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+    @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+    @prefix pcdm:  <http://pcdm.org/models#> .
+    @prefix relators:  <http://id.loc.gov/vocabulary/relators/> .
+    @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+    @prefix fedoraconfig:  <http://fedora.info/definitions/v4/config#> .
+    @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+    @prefix test:  <info:fedora/test/> .
+    @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+    @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+    @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+
+    <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f>
+            rdf:type                fedora:Container ;
+            rdf:type                hydraworks:FileSet ;
+            rdf:type                fedora:Resource ;
+            rdf:type                pcdm:Object ;
+            fedora:lastModifiedBy   "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedorasystem:downloadFilename  "09.tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedorasystem:hasModel          "FileSet"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            dcterms:dateSubmitted     "2020-07-06T20:32:32.581801767+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            fedora:createdBy        "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            relators:dpt               "mbagget1@utk.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:created          "2020-07-06T20:32:32.453Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            fedora:lastModified     "2020-07-06T20:32:37.521Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            dcterms:modified          "2020-07-06T20:32:32.581801767+00:00"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            dc:creator              "mbagget1@utk.edu"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            dcterms:title             "09.tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            rdf:type                ldp:RDFSource ;
+            rdf:type                ldp:Container ;
+            fedora:writable         "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+            fedora:hasParent        <http://localhost:8984/rest/dev> ;
+            ldp:contains            <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files> ;
+            pcdm:hasFile           <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files/9a854dd0-31c5-4c3b-81b8-8a4d1a9d3799> .
+
 ====================
 Preservation Objects
 ====================
+
+Finally, our preservation objects are attached as versions to our pcdm:Files in Fedora.
 
 Data Stored in Postgres
 -----------------------
