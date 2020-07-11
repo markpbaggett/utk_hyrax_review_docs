@@ -500,6 +500,46 @@ The Samvera Rights Metadata Working Group suggests several other properties for 
 Descriptive Metadata
 ====================
 
+In Hyrax, descriptive metadata elements are also stored as RDF triples in Fedora.  For instance, an identifier on a
+Fedora object representing a Druid book would look something like this:
+
+.. code-block:: turtle
+
+    @prefix dcterms: <http://purl.org/dc/terms/> .
+    @prefix fedoraobject: <https://example.org/objects/> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema#> .
+
+    <fedoraobject:1>
+        dcterms:identifier "druid_1969may"^^<xs:string>,  "druid:123"^^<xs:string> .
+
+**Note**: If you're not minting new RDF instances outside of Fedora things, an external triple store is unnecessary. If
+you need to mint new intances, you'll need one as that should not go in Fedora.  For instance, if you wanted to mint
+a new RDF instance to represent a subject, you'd need a separate triple store.
+
+.. code-block:: turtle
+    :name: Subject in Fedora
+    :caption: Subject in Fedora
+
+    @prefix fedoraobject: <https://example.org/objects/> .
+    @prefix dcterms: <http://purl.org/dc/terms/> .
+    @prefix utksubjects: <https://example.org/subjects/>
+
+
+    <fedoraobject:1> dcterms:subject <utksubjects:1> .
+
+.. code-block:: turtle
+    :name: Minted Subject in External Triplestore
+    :caption: Minted Subject in External Triplestore
+
+    @prefix utksubjects: <https://example.org/subjects/>
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix rdfs: <https://www.w3.org/TR/rdf-schema/> .
+
+    <utksubjects:1>
+        a skos:Concept ;
+        rdfs:label "Photography of gardens";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
+
 =====================
 Preservation Metadata
 =====================
