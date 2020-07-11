@@ -661,9 +661,11 @@ Preservation Objects
 
 Finally, our preservation objects are attached as versions to our pcdm:Files in Fedora.
 
-Data Stored in Postgres
------------------------
 
-Data Stored Elsewhere
----------------------
+Data Stored in Postgres and Elsewhere
+-------------------------------------
+
+As Hyrax is built on Rails, most things are configured as code.  The code is stored in the Filesystem and synced with a
+database.  While there are hundreds of examples, one easy to understand is how Hydra:Works are generated.  Generating a
+new type of works scaffolds out many files.  You also must update your database to make this work (this needs work.)
 
