@@ -372,12 +372,12 @@ versus a public item.)
     @prefix fedoraconfig:  <http://fedora.info/definitions/v4/config#> .
     @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
     @prefix test:  <info:fedora/test/> .
-    @prefix ns011:  <http://projecthydra.org/ns/mix/> .
-    @prefix ns010:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+    @prefix hydramix:  <http://projecthydra.org/ns/mix/> .
+    @prefix nfo:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
     @prefix ns015:  <http://projecthydra.org/ns/fits/> .
-    @prefix ns014:  <http://www.iana.org/assignments/relation/> .
+    @prefix linkrelations:  <http://www.iana.org/assignments/relation/> .
     @prefix ns013:  <http://www.openarchives.org/ore/terms/> .
-    @prefix ns012:  <http://www.w3.org/2003/12/exif/ns#> .
+    @prefix exif:  <http://www.w3.org/2003/12/exif/ns#> .
     @prefix ns018:  <http://www.w3.org/2011/content#> .
     @prefix ns017:  <http://schema.org/> .
     @prefix ns016:  <http://sweet.jpl.nasa.gov/2.2/reprDataFormat.owl#> .
@@ -540,13 +540,69 @@ a new RDF instance to represent a subject, you'd need a separate triple store.
         rdfs:label "Photography of gardens";
         skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348.html> .
 
-=====================
-Preservation Metadata
-=====================
+===================================
+Preservation and Technical Metadata
+===================================
 
-==================
-Technical Metadata
-==================
+Preservation and technical metadata is also stored in Fedora. In PCDM, a pcdm:File is a sequence of binary data that is
+described by some accompanying metadata. As a pcdm:File in Hyrax is a Fedora container, this applies here.  Looking at a
+very basic configuration of Hyrax, a pcdm:File object may look something like this in Fedora:
+
+.. code-block::
+    :name: pcdm:File
+    :caption: pcdm:File
+
+    @prefix premis:  <http://www.loc.gov/premis/rdf/v1#> .
+    @prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+    @prefix xsi:  <http://www.w3.org/2001/XMLSchema-instance> .
+    @prefix xmlns:  <http://www.w3.org/2000/xmlns/> .
+    @prefix xml:  <http://www.w3.org/XML/1998/namespace> .
+    @prefix fedoraconfig:  <http://fedora.info/definitions/v4/config#> .
+    @prefix foaf:  <http://xmlns.com/foaf/0.1/> .
+    @prefix test:  <info:fedora/test/> .
+    @prefix hydramix:  <http://projecthydra.org/ns/mix/> .
+    @prefix nfo:  <http://www.semanticdesktop.org/ontologies/2007/03/22/nfo#> .
+    @prefix linkrelations:  <http://www.iana.org/assignments/relation/> .
+    @prefix exif:  <http://www.w3.org/2003/12/exif/ns#> .
+    @prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+    @prefix fedora:  <http://fedora.info/definitions/v4/repository#> .
+    @prefix ebucore:  <http://www.ebu.ch/metadata/ontologies/ebucore/ebucore#> .
+    @prefix ldp:  <http://www.w3.org/ns/ldp#> .
+    @prefix xs:  <http://www.w3.org/2001/XMLSchema> .
+    @prefix dc:  <http://purl.org/dc/elements/1.1/> .
+    
+    <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files/9a854dd0-31c5-4c3b-81b8-8a4d1a9d3799>
+            rdf:type                 ldp:NonRDFSource ;
+            rdf:type                 ns006:File ;
+            rdf:type                 ns009:OriginalFile ;
+            rdf:type                 fedora:Binary ;
+            rdf:type                 fedora:Resource ;
+            fedora:lastModifiedBy    "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            premis:hasFormatName     "TIFF EXIF"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:width            "2060"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:fileSize         "6096764"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            premis:hasSize           "6096764"^^<http://www.w3.org/2001/XMLSchema#long> ;
+            exif:orientation        "normal*"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:createdBy         "bypassAdmin"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:created           "2020-07-06T20:32:32.875Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            premis:hasMessageDigest  <urn:sha1:4dade79cfc6e8a4404711a879248f08ab9213515> ;
+            ebucore:filename         "09.tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            exif:software           "Adobe Photoshop CS4 Windows"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            nfo:hashValue          "cd946000902654d3f0e6094c335a5f0d"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:dateCreated      "2012:05:09 11:59:42-04:00"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            exif:colorSpace         "BlackIsZero"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:hasMimeType      "image/tiff"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            fedora:lastModified      "2020-07-06T20:32:36.533Z"^^<http://www.w3.org/2001/XMLSchema#dateTime> ;
+            ebucore:height           "2954"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            hydramix:compressionScheme  "Uncompressed"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            ebucore:dateModified     "2012:05:09 12:48:56"^^<http://www.w3.org/2001/XMLSchema#string> ;
+            rdf:type                 ldp:NonRDFSource ;
+            fedora:writable          "true"^^<http://www.w3.org/2001/XMLSchema#boolean> ;
+            linkrelations:describedby        <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files/9a854dd0-31c5-4c3b-81b8-8a4d1a9d3799/fcr:metadata> ;
+            fedora:hasParent         <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files> ;
+            fedora:hasFixityService  <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files/9a854dd0-31c5-4c3b-81b8-8a4d1a9d3799/fcr:fixity> ;
+            fedora:hasVersions       <http://localhost:8984/rest/dev/1g/05/fb/60/1g05fb60f/files/9a854dd0-31c5-4c3b-81b8-8a4d1a9d3799/fcr:versions> .
+
 
 =======================
 Administrative Metadata
