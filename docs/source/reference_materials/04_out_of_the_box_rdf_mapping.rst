@@ -354,6 +354,29 @@ Notice how an identifier is now just a dcterms identifier.
                         xlink:href="http://rightsstatements.org/vocab/CNE/1.0/">Copyright Not Evaluated</accessCondition>
     </mods>
 
+-------------------------------------------
+Problems with this Mapping Beyond Lossyness
+-------------------------------------------
+
+In RDF and linked data, predicates, or RDF properties, have ranges. When selecting linked data predicates, you must
+understand what data types are allowed and what is not.  While Hyrax's code out of the box forces you to understand what
+data types can be used as a value for a predicate, it fails to understand the data types the RDF requires and thus can
+lead to poor "linked data citizenship."
+
+For instance, resource type out-of-the-box maps to `dct:type`.  This seems appropriate, until you look at the required
+data type for the value, `xsd:string`.  As you can see on the `Dublin Core Domain Range website <https://www.dublincore.org/specifications/dublin-core/domain-range/#dctermstype>`_
+`dct:type` has a range of `rdfs:Class`.  This means that whatever the value of dct:type is, must be an instance of an
+`rdfs:Class` (have a `rdf:type`).  In other words, a string cannot work here and the value must be a URI that refers to
+a web resource that is RDF and has a `rdf:type` property.
+
+While things may look fine on the surface, using this map is bad and will lead to RDF that is not valid and being a
+"bad linked data citizen".
+
+You may be wondering how this can be in their default mapping.  I believe it's due to a few factors including the fact
+that most Samvera organizations would be developing their own metadata application profiles.  In the next section, I will
+describe alternative mappings and best practices described by the Samvera community.
+
+
 ====================
 Alternative Mappings
 ====================
