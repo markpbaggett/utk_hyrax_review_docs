@@ -55,3 +55,97 @@ prior to moving to Hyrax:
 
 Leveraging our "Linked Data-Ready" Elements During Migration
 ------------------------------------------------------------
+
+===================================
+mods:subject/@valueURI/[mods:topic]
+===================================
+
+As you'll see in the next section, subjects are strings by default in Hyrax.  We'd need to modify this prior to migration
+to migrate this data.
+
+The `Final Recommendation of the Samvera MODS to RDF Description Subgroup Report <https://wiki.duraspace.org/download/attachments/87460857/MODS-RDF-Mapping-Recommendations_SMIG_v1_2019-01.pdf?api=v2>`_
+describes multiple ways to do this. In reality, we need to develop our own MAP, but for the purposes of this document, I
+will follow the recommendations blindly.
+
+Let's say we had some XML that looked like this:
+
+.. code-block:: xml
+
+    <subject authority="lcsh"
+        valueURI="http://id.loc.gov/authorities/subjects/sh85101348">
+        <topic>
+            Photography of gardens
+        </topic>
+    </subject>
+    <subject authority="lcsh"
+        valueURI="http://id.loc.gov/authorities/subjects/sh85053123">
+        <topic>
+            Gardens, American
+        </topic>
+    </subject>
+    <subject authority="lcsh"
+        valueURI="http://id.loc.gov/authorities/subjects/sh85077428">
+        <topic>
+            Liriodendron tulipifera
+        </topic>
+    </subject>
+    <subject authority="lcsh"
+        valueURI="http://id.loc.gov/authorities/subjects/sh85049328">
+        <topic>
+            Flowering trees
+        </topic>
+    </subject>
+
+If we were to follow the direct mappings option, our RDF would look like this:
+
+.. code-block:: turtle
+
+    @prefix dce: <http://purl.org/dc/elements/1.1/> .
+
+    <http://example.org/object/1>
+        dce:subject <http://id.loc.gov/authorities/subjects/sh85101348>, <http://id.loc.gov/authorities/subjects/sh85053123>, <http://id.loc.gov/authorities/subjects/sh85077428>, <http://id.loc.gov/authorities/subjects/sh85049328> .
+
+.. image:: ../images/subject_direct.png
+
+If we were to follow the minted objects mapping option, our RDF would look like this:
+
+.. code-block:: turtle
+
+    @prefix fedoraObject: <http://[LocalFedoraRepository]/> .
+    @prefix utksubjects: <http://[address-to-triplestore]/subjects/> .
+    @prefix owl: <https://www.w3.org/2002/07/owl#> .
+    @prefix rdfs: <https://www.w3.org/TR/rdf-schema/> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+
+    <fedoraObject:tq/57/nr/06/tq57nr067>
+        dcterms:subject <utksubjects:1>, <utksubjects:2>, <utksubjects:3>, <utksubjects:4> .
+
+    <utksubjects:1>
+        a skos:Concept ;
+        rdfs:label "Photography of gardens";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348> .
+
+    <utksubjects:2>
+        a skos:Concept ;
+        rdfs:label "Gardens, American";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85101348> .
+
+    <utksubjects:3>
+        a skos:Concept ;
+        rdfs:label "Liriodendron tulipifera";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85077428> .
+
+    <utksubjects:4>
+        a skos:Concept ;
+        rdfs:label "Flowering trees";
+        skos:exactMatch <http://id.loc.gov/authorities/subjects/sh85049328> .
+
+.. image:: ../images/subject_minted.png
+
+================================
+mods:accessCondition/@xlink:href
+================================
+
+=======================================
+mods:name/mods:valueURI/[mods:namePart]
+=======================================
