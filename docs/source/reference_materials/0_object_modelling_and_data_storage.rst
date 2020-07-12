@@ -659,7 +659,9 @@ Like other forms of metadata, Fedora also contains our administrative metadata a
 Preservation Objects
 ====================
 
-Finally, our preservation objects are attached as versions to our pcdm:Files in Fedora.
+Finally, our preservation objects are attached as versions to our pcdm:Files in Fedora:
+
+.. image:: ../images/download_file.png
 
 
 Data Stored in Postgres and Elsewhere
@@ -667,5 +669,43 @@ Data Stored in Postgres and Elsewhere
 
 As Hyrax is built on Rails, most things are configured as code.  The code is stored in the Filesystem and synced with a
 database.  While there are hundreds of examples, one easy to understand is how Hydra:Works are generated.  Generating a
-new type of works scaffolds out many files.  You also must update your database to make this work (this needs work.)
+new type of works scaffolds out many files.  You also must update your database to make you app work correctly.
 
+For instance, let's say we wanted to create a new work type called `Book`.  This work type will be different from our
+default work type. First, we'd generate the work type:
+
+.. code-block:: shell
+
+    rails generate hyrax:work Book
+
+When we do this, we automatically scaffold new pages that must be tracked in our app:
+
+    app/actors/hyrax/actors/book_actor.rb
+    app/controllers/hyrax/books_controller.rb
+    app/forms/hyrax/book_form.rb
+    app/indexers/book_indexer.rb
+    app/models/book.rb
+    app/presenters/hyrax/book_presenter.rb
+    app/views/hyrax/books/
+    config/locales/book.de.yml
+    config/locales/book.en.yml
+    config/locales/book.es.yml
+    config/locales/book.fr.yml
+    config/locales/book.it.yml
+    config/locales/book.pt-BR.yml
+    config/locales/book.zh.yml
+    spec/actors/hyrax/actors/book_actor_spec.rb
+    spec/controllers/hyrax/books_controller_spec.rb
+    spec/features/create_book_spec.rb
+    spec/forms/hyrax/book_form_spec.rb
+    spec/models/book_spec.rb
+    spec/presenters/hyrax/book_presenter_spec.rb
+
+We also inject code into our `config/initializers/hyrax.rb` file:
+
+.. code-block:: ruby
+
+    # Injected via `rails g hyrax:work Image`
+    config.register_curation_concern :image
+    # Injected via `rails g hyrax:work Book`
+    config.register_curation_concern :book
