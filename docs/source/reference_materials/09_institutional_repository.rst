@@ -174,6 +174,34 @@ And finally, here is the object in Google Scholar:
 
 .. image:: ../images/google_scholar.png
 
+=================================
+Embargoing and Restricting Access
+=================================
+
+Hyrax comes with a few default "Visibilty" options.  This ties to the Web ACL and follows a similar model as workflows.
+
+When uploading an object, it can be:
+
+1. Made available to all (Public)
+2. Restricted access to the Institution (Institution)
+3. Set a date for future release (Embargo)
+4. Set a date for future reduced access (Lease)
+5. Kept to yourself with the option to share in the future (Private)
+
+You can see an example of this here:
+
+.. image:: ../images/embargoing.png
+
+When you embargo or lease, you have a similar option:
+
+You restrict to a particular visibility option (e.g. Private) until a specific date in the future. After than date, you
+can decide whether to open it up to the Public or Institutional access.
+
+Regardless of the visibility settings for the work, you can also share it with other users and groups.  This can of course
+be controlled by the Workflow defined.
+
+.. image:: ../images/sharing.png
+
 ================
 Usage Statistics
 ================
