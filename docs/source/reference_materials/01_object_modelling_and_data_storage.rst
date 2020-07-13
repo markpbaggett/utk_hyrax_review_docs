@@ -548,7 +548,7 @@ Preservation and technical metadata is also stored in Fedora. In PCDM, a pcdm:Fi
 described by some accompanying metadata. As a pcdm:File in Hyrax is a Fedora container, this applies here.  Looking at a
 very basic configuration of Hyrax, a pcdm:File object may look something like this in Fedora:
 
-.. code-block::
+.. code-block:: turtle
     :name: pcdm:File
     :caption: pcdm:File
 
