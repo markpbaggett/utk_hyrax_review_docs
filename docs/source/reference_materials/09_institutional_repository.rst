@@ -37,15 +37,108 @@ Hyrax as an Institutional Repository
 In order to serve as a replacement for our current institutional repository, the following functionality must exist as
 specified by the IR RFP Group:
 
-1. Unmediated Uploads
+1. Mediated and Unmediated Uploads
 2. Google Scholar Integration
 3. Accept, Publish, and Other Workflows
 4. Embargoing
 5. Usage statistics
-5. Tombstoning
+6. Tombstoning
 
 Hyrax supports all of these things out-of-the-box.  In this section, I'll describe these features in detail and point
 to examples of Hyrax being used as an institutional repository.
+
+===============================
+Mediated and Unmediated Uploads
+===============================
+
+Hyrax is designed to support mediated and unmediated uploads. You can easily configure it to allow an authenticated user through
+your campus authentication system to login and deposit objects directly or reviewed and approved by another user.
+
+Here you can see an example of what a user's screen might look like and how they'd add new "works".
+
+.. image:: ../images/your_activity.png
+
+In the next section we'll discuss creating workflows for particular use cases.
+
+===================
+Designing Workflows
+===================
+
+Workflows in Hyrax are incredibly dynamic and completely up to the institution. These workflows are a database driven
+implementation of `finite state machines <https://en.wikipedia.org/wiki/Finite-state_machine>`_
+
+---------------
+Getting Started
+---------------
+
+In order to create a workflow, you start by laying it out in something like draw.io or a whiteboard. In your drawings:
+
+* Circles should represent states
+* Lines should represent actions
+* Determine what roles are required to take an action
+* Determine what roles can see an item in the given state
+* When changing state, what else should happen (e.g. send notifications, update metadata, etc.)
+
+Keep in mind that some roles will be assigned to all items in the workflow (e.g. Metadata Reviewer) while other roles will
+be assigned to single items in the workflow (e.g. Graduate School Accepter / Publisher)
+
+Here is an example:
+
+.. image:: ../images/hyrax_workflows.png
+
+--------------------
+Translating to Hyrax
+--------------------
+
+By default, Hyrax will create a workflow configuration when you generate a new work type:
+
+.. code-block:: shell
+
+    rails generate hyrax:work
+
+To use it, you need to load it into the database with `rails hyrax:workflow:load`.  Before you do it though, you should
+review your workflow and make sure it is correct.
+
+To model the workflow in the drawing above, we'd create JSON like this:
+
+.. code-block:: json
+
+    {
+      "work_types": [
+        {
+          "name": "example",
+             "actions": [{
+                 "name": "submit_for_review", "transition_to": "under_review",
+                 "from_states": [{"names": ["new", "changes_required"], "roles": ["creating_deposit"]}]
+             }, {
+                 "name": "request_changes", "transition_to": "changes_required",
+                 "from_states": [{"names": ["under_review"], "roles": ["approving_work"]}]
+            }, {
+                 "name": "approve", "transition_to": "approved",
+                 "from_states": [{"names": ["under_review"], "roles": ["approving_work"]}]
+            }]
+         }
+      ]
+    }
+
+-----------------
+Loading Workflows
+-----------------
+
+When a Hyrax app is created by running `rails generate hyrax:install`, a default workflow is created in
+`config/workflows/default_workflow.json`.
+
+You can define additional workflows following the syntax described Defining a Workflow in Hyrax above.
+Add the json files to config/workflows directory in your app.
+
+All workflows defined in config/workflows directory can be loaded using the following command.
+
+.. code-block:: shell
+
+    rails hyrax:workflow:load
+
+This will load the workflow and create user roles. You will want to assign users/groups to the roles. You will be able
+to select the workflow for use in an admin_set.
 
 ==========================
 Google Scholar Integration
