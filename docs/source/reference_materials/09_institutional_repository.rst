@@ -81,6 +81,67 @@ And finally, here is the object in Google Scholar:
 
 .. image:: ../images/google_scholar.png
 
+================
+Usage Statistics
+================
+
+Out of the box, Hyrax has the capability of tracking usage statistics for an object.  Here is an example of this integration:
+
+.. image:: ../images/page_views.png
+
+This requires minimal configuration.
+
+-----------------------------------
+Capturing usage and download counts
+-----------------------------------
+
+To enable the Google Analytics javascript snippet, make sure that config.google_analytics_id is set in your app within
+the config/initializers/hyrax.rb file. A Google Analytics ID typically looks like UA-99999999-1.
+
+--------------------------
+Displaying usage in the UI
+--------------------------
+
+To display data from Google Analytics in the UI, first head to the Google Developers Console and create a new project:
+
+`<https://console.developers.google.com/project>`_
+
+Let's assume for now Google assigns it a project ID of foo-bar-123. It may take a few seconds for this to complete
+(watch the Activities bar near the bottom of the browser). Once it's complete, enable the Google+ and Google Analytics
+APIs here (note: this is an example URL -- you'll have to change the project ID to match yours):
+
+`<https://console.developers.google.com/apis/library?project=foo-bar-123>`_
+
+Finally, click the 'credentials' menu item and create a new Service Account Key. This will give you the client ID, a
+client email address, a private key file, and a private key secret/password, which you will need in the next step.
+
+Edit config/analytics.yml to reflect the information that the Google Developer Console gave you earlier; namely you'll
+need to provide it:
+
+    The path to the private key
+    The password/secret for the privatekey
+    The Service Account ID (email)
+    An application name (you can make this up)
+    An application version (you can make this up)
+
+Lastly, you will need to set config.analytics = true and config.analytic_start_date in config/initializers/hyrax.rb and
+ensure that the client email has the proper access within your Google Analyics account. To do so, go to the Admin tab
+for your Google Analytics account. Click on User Management, in the Account column, and add "Read & Analyze" permissions
+for the OAuth client email address.
+
+---------------------------
+Populating the Analytics DB
+---------------------------
+
+The API access required in the UI integration step, above, enables more than just per-object stats display.
+We can harvest GA stats for all of our objects into the local database, and use this data to integrate usage reports
+into the Admin Statistics dashboard. So far this integration into the dashboard has not been done.
+
+To harvest stats for all your objects, you might use a rake task that runs Sufia::UserStatImporter which in turn is called by a cron job.
+Problems with Analytics
+
+Having a problem setting up Analytics. See Analytics-workaround-for-non-production-environments, which documents a workaround for one known issue.
+
 Institutions Using Hyrax as an Institutional Repository
 -------------------------------------------------------
 
