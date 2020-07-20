@@ -107,6 +107,234 @@ If we were to follow the direct mappings option, our RDF would look like this:
 
 .. image:: ../images/subject_direct.png
 
+While this may look lossy, remember that the each URI has it's own RDF properties that we can "look up".  For instance,
+let's look at the URI for "Flowering trees":
+
+.. code-block:: turtle
+
+    @prefix ns0: <http://id.loc.gov/ontologies/bflc/> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix ns1: <http://www.loc.gov/mads/rdf/v1#> .
+    @prefix ns2: <http://id.loc.gov/vocabulary/identifiers/> .
+    @prefix ns3: <http://id.loc.gov/ontologies/RecordInfo#> .
+    @prefix owl: <http://www.w3.org/2002/07/owl#> .
+    @prefix ns4: <http://purl.org/vocab/changeset/schema#> .
+
+    <http://id.loc.gov/resources/works/17029713>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Rogers, Walter E, 1890- Tree flowers of forest, park, and street"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/1695078>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "O'Gorman, Helen. Mexican flowering trees and plants"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/4575454>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Whitehead, Stanley Bamford, 1908- Observer's book of flowering trees & shrubs for gardens"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/3384399>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Bird, Richard, 1942- Flowering trees and shrubs :"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/8592293>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Imai, Tetsurō, 1901- Hanagi saijiki"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/7507536>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Clark, Robert B. Flowering trees"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85095707>
+      a <http://www.loc.gov/mads/rdf/v1#Topic>, <http://www.loc.gov/mads/rdf/v1#Authority>, skos:Concept ;
+      ns1:authoritativeLabel "Ornamental trees"@en ;
+      ns1:elementList ( _:genid3 ) ;
+      skos:prefLabel "Ornamental trees"@en .
+
+    <http://id.loc.gov/resources/works/2166647>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Menninger, Edwin A. (Edwin Arnold), 1896-1995. Flowering trees of the world for tropics and warm climates"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/10356131>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Takhtadzhi︠a︡n, A. L. (Armen Leonovich) Sistema i filogenii︠a︡ t︠s︡vetkovykh rasteniĭ"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/12733507>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Flint, Harrison L. (Harrison Leigh), 1929- Ortho's all about flowering trees & shrubs,"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85049324>
+      a ns1:Authority, skos:Concept ;
+      ns1:authoritativeLabel "Flowering dogwood"@en ;
+      skos:prefLabel "Flowering dogwood"@en .
+
+    <http://id.loc.gov/resources/works/4533150>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Cowen, D. V. Flowering trees and shrubs in India,"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/4333139>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Davis, Brian, 1943- Flowering trees & shrubs"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/1236113>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Pearce, Sydney Albert. Flowering shrubs and tress,"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/278574>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Randhawa, M. S. (Mohinder Singh), 1909-1986. Beautiful trees and gardens"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/4241957>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Selsam, Millicent E. (Millicent Ellis), 1912-1996. Tree flowers"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85049325>
+      a ns1:Authority, skos:Concept ;
+      ns1:authoritativeLabel "Flowering plums"@en ;
+      skos:prefLabel "Flowering plums"@en .
+
+    <http://id.loc.gov/resources/works/1724145>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Hersey, Jean, 1902- Flowering shrubs and small trees"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/15838029>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Wang, Yicheng, 1936- Zui xin tu jie mu ben hua hui zai pei zhi nan"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/5924782>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Macself, Albert James, 1878- Flowering trees and shurbs,"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85049328>
+      a ns1:Topic, ns1:Authority, skos:Concept ;
+      ns0:subjectOf <http://id.loc.gov/resources/works/563239>, <http://id.loc.gov/resources/works/306770>, <http://id.loc.gov/resources/works/17429063>, <http://id.loc.gov/resources/works/3384399>, <http://id.loc.gov/resources/works/7513667>, <http://id.loc.gov/resources/works/775595>, <http://id.loc.gov/resources/works/13241452>, <http://id.loc.gov/resources/works/7507536>, <http://id.loc.gov/resources/works/4533150>, <http://id.loc.gov/resources/works/4333139>, <http://id.loc.gov/resources/works/13410130>, <http://id.loc.gov/resources/works/12733507>, <http://id.loc.gov/resources/works/4652618>, <http://id.loc.gov/resources/works/1724145>, <http://id.loc.gov/resources/works/8592293>, <http://id.loc.gov/resources/works/9406857>, <http://id.loc.gov/resources/works/7970456>, <http://id.loc.gov/resources/works/5924782>, <http://id.loc.gov/resources/works/2166647>, <http://id.loc.gov/resources/works/1695078>, <http://id.loc.gov/resources/works/7075453>, <http://id.loc.gov/resources/works/1236113>, <http://id.loc.gov/resources/works/9381592>, <http://id.loc.gov/resources/works/278574>, <http://id.loc.gov/resources/works/6127643>, <http://id.loc.gov/resources/works/7949315>, <http://id.loc.gov/resources/works/17029713>, <http://id.loc.gov/resources/works/3108729>, <http://id.loc.gov/resources/works/4241957>, <http://id.loc.gov/resources/works/10356131>, <http://id.loc.gov/resources/works/15838029>, <http://id.loc.gov/resources/works/4575454> ;
+      ns2:lccn "sh 85049328"^^xsd:string ;
+      ns1:adminMetadata [
+        a <http://id.loc.gov/ontologies/RecordInfo#RecordInfo> ;
+        ns3:recordChangeDate "1986-02-11T00:00:00"^^xsd:dateTime ;
+        ns3:recordContentSource <http://id.loc.gov/vocabulary/organizations/dlc> ;
+        ns3:recordStatus "new"^^xsd:string
+      ], [
+        a ns3:RecordInfo ;
+        ns3:recordChangeDate "1998-03-20T16:11:29"^^xsd:dateTime ;
+        ns3:recordContentSource <http://id.loc.gov/vocabulary/organizations/dlc> ;
+        ns3:recordStatus "revised"^^xsd:string
+      ] ;
+      ns1:authoritativeLabel "Flowering trees"@en ;
+      ns1:elementList ( _:genid8 ) ;
+      ns1:hasBroaderAuthority <http://id.loc.gov/authorities/subjects/sh85049329>, <http://id.loc.gov/authorities/subjects/sh85095707> ;
+      ns1:hasCloseExternalAuthority <http://id.worldcat.org/fast/927862> ;
+      ns1:hasNarrowerAuthority <http://id.loc.gov/authorities/subjects/sh85049324>, <http://id.loc.gov/authorities/subjects/sh85049323>, <http://id.loc.gov/authorities/subjects/sh85049325> ;
+      ns1:isMemberOfMADSCollection <http://id.loc.gov/authorities/subjects/collection_LCSHAuthorizedHeadings>, <http://id.loc.gov/authorities/subjects/collection_LCSH_General>, <http://id.loc.gov/authorities/subjects/collection_SubdivideGeographically> ;
+      ns1:isMemberOfMADSScheme <http://id.loc.gov/authorities/subjects> ;
+      owl:sameAs <info:lc/authorities/sh85049328>, <http://id.loc.gov/authorities/sh85049328#concept> ;
+      skos:broader <http://id.loc.gov/authorities/subjects/sh85049329>, <http://id.loc.gov/authorities/subjects/sh85095707> ;
+      skos:changeNote [
+        a <http://purl.org/vocab/changeset/schema#ChangeSet> ;
+        ns4:changeReason "new"^^xsd:string ;
+        ns4:createdDate "1986-02-11T00:00:00"^^xsd:dateTime ;
+        ns4:creatorName <http://id.loc.gov/vocabulary/organizations/dlc> ;
+        ns4:subjectOfChange <http://id.loc.gov/authorities/subjects/sh85049328>
+      ], [
+        a ns4:ChangeSet ;
+        ns4:changeReason "revised"^^xsd:string ;
+        ns4:createdDate "1998-03-20T16:11:29"^^xsd:dateTime ;
+        ns4:creatorName <http://id.loc.gov/vocabulary/organizations/dlc> ;
+        ns4:subjectOfChange <http://id.loc.gov/authorities/subjects/sh85049328>
+      ] ;
+      skos:closeMatch <http://id.worldcat.org/fast/927862> ;
+      skos:inScheme <http://id.loc.gov/authorities/subjects> ;
+      skos:narrower <http://id.loc.gov/authorities/subjects/sh85049324>, <http://id.loc.gov/authorities/subjects/sh85049323>, <http://id.loc.gov/authorities/subjects/sh85049325> ;
+      skos:prefLabel "Flowering trees"@en .
+
+    <http://id.loc.gov/resources/works/7513667>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Catchpole, Nat. Flowering shrubs and small trees"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/4652618>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Harris, Cyril Charles. Illustrated guide to flowering trees and shrubs"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/563239>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Baker, Jerry. Flowering garden"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/306770>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Baker, Jerry. Make friends with your flowering trees"^^xsd:string .
+
+    <http://id.worldcat.org/fast/927862>
+      a ns1:Authority, skos:Concept ;
+      ns1:authoritativeLabel "Flowering trees"^^xsd:string ;
+      skos:prefLabel "Flowering trees"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85049323>
+      a ns1:Authority, skos:Concept ;
+      ns1:authoritativeLabel "Flowering cherries"@en ;
+      skos:prefLabel "Flowering cherries"@en .
+
+    <http://id.loc.gov/resources/works/13410130>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Duthie, Pam, 1942- Continuous color :"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/7075453>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Oakman, Harry. Colourful trees for landscapes and gardens"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/13241452>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Church, Glyn. Trees and shrubs for flowers"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/6127643>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Randhawa, M. S. (Mohinder Singh), 1909-1986. Flowering trees"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/775595>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Chadbund, Geoffrey. Flowering cherries"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/9381592>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Puttock, A. G. Trees and shrubs for small gardens"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/17429063>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Better homes and gardens trees & shrubs"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/9406857>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Kinne, Jane S. Flowering tropical trees,"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/7970456>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Li, Hui-Lin, 1911- origin and cultivation of shade and ornamental trees"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/7949315>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Randhawa, M. S. (Mohinder Singh), 1909-1986. Flowering trees in India"^^xsd:string .
+
+    <http://id.loc.gov/resources/works/3108729>
+      a <http://id.loc.gov/ontologies/bibframe/Work> ;
+      ns0:aap "Rogers, Walter E., 1890- Tree flowers of forest, park, and street,"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85049329>
+      a ns1:Topic, ns1:Authority, skos:Concept ;
+      ns1:authoritativeLabel "Flowering woody plants"@en ;
+      ns1:elementList ( _:genid4 ) ;
+      skos:prefLabel "Flowering woody plants"@en .
+
+    _:genid3
+      a ns1:TopicElement ;
+      ns1:elementValue "Ornamental trees"@en .
+
+    _:genid4
+      a ns1:TopicElement ;
+      ns1:elementValue "Flowering woody plants"@en .
+
+    _:genid8
+      a ns1:TopicElement ;
+      ns1:elementValue "Flowering trees"@en .
+
 If we were to follow the minted objects mapping option, our RDF would look like this:
 
 .. code-block:: turtle
