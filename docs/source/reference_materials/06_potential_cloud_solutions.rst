@@ -30,3 +30,8 @@ According to their website,
 
 During this investigation, I reached out to DCE to discuss our projects.  I was told that they were focused on getting
 Tenejo ready for Hyrax 3.0 and would not be able to take on new clients until 2021.
+
+Notch8
+------
+
+Add this after July 21.
