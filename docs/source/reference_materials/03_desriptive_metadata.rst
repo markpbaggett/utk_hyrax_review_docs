@@ -442,3 +442,201 @@ will follow the recommendations blindly.
 
 Let's say we had some XML that looked like this:
 
+.. code-block:: xml
+
+    <name valueURI="http://id.loc.gov/authorities/names/no2018075078"
+        authority="naf">
+        <namePart>
+            Jim Thompson Company
+        </namePart>
+        <role>
+            <roleTerm authority="marcrelator"
+                valueURI="http://id.loc.gov/vocabulary/relators/pht">
+                Photographer
+            </roleTerm>
+        </role>
+    </name>
+
+Following the direct mappings option, we'd have RDF that looks like this:
+
+
+
+.. code-block:: turtle
+
+    @prefix fedoraObject: <http://[LocalFedoraRepository]/> .
+    @prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+
+    <fedoraObject:tq/57/nr/06/tq57nr067>
+        rel:pht <http://id.loc.gov/authorities/names/no2018075078> .
+
+While this may look lossy, remember we're pointing to RDF properties that have much more metadata than we have here:
+
+.. code-block:: turtle
+
+    @prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+    @prefix ns0: <http://www.loc.gov/mads/rdf/v1#> .
+    @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+    @prefix ns1: <http://id.loc.gov/vocabulary/identifiers/> .
+    @prefix ns2: <http://id.loc.gov/ontologies/RecordInfo#> .
+    @prefix ns3: <http://purl.org/vocab/changeset/schema#> .
+    @prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+    <http://id.loc.gov/authorities/names/no2018075117>
+      a <http://www.loc.gov/mads/rdf/v1#CorporateName>, <http://www.loc.gov/mads/rdf/v1#Authority>, skos:Concept ;
+      ns0:authoritativeLabel "Thompson Brothers Commercial Photographers"^^xsd:string ;
+      ns0:elementList ( _:genid2 ) ;
+      skos:prefLabel "Thompson Brothers Commercial Photographers"^^xsd:string .
+
+    <http://id.loc.gov/authorities/names/no2018075078>
+      a ns0:CorporateName, ns0:Authority, skos:Concept ;
+      ns1:lccn "no2018075078"^^xsd:string ;
+      ns1:local "(OCoLC)oca11380309"^^xsd:string ;
+      ns0:adminMetadata [
+        a <http://id.loc.gov/ontologies/RecordInfo#RecordInfo> ;
+        ns2:languageOfCataloging <http://id.loc.gov/vocabulary/iso639-2/eng> ;
+        ns2:recordChangeDate "2018-06-04T00:00:00"^^xsd:dateTime ;
+        ns2:recordContentSource <http://id.loc.gov/vocabulary/organizations/tu> ;
+        ns2:recordStatus "new"^^xsd:string
+      ], [
+        a ns2:RecordInfo ;
+        ns2:languageOfCataloging <http://id.loc.gov/vocabulary/iso639-2/eng> ;
+        ns2:recordChangeDate "2018-06-05T07:33:12"^^xsd:dateTime ;
+        ns2:recordContentSource <http://id.loc.gov/vocabulary/organizations/tu> ;
+        ns2:recordStatus "revised"^^xsd:string
+      ] ;
+      ns0:authoritativeLabel "Jim Thompson Company"^^xsd:string ;
+      ns0:elementList ( _:genid15 ) ;
+      ns0:hasExactExternalAuthority <http://viaf.org/viaf/sourceID/LC%7Cno2018075078#skos:Concept> ;
+      ns0:hasRelatedAuthority <http://id.loc.gov/authorities/names/no2018075295>, <http://id.loc.gov/authorities/names/no2018075117> ;
+      ns0:hasSource [
+        a ns0:Source ;
+        ns0:citation-note "stamped inscription on lantern slide frame (Photo & Slide by Jim Thompson Company.)"^^xsd:string ;
+        ns0:citation-source "View in Lillian (Wrenn) Williams' Garden, approximately 1927-1935, in the University of Tennessee's Knoxville Garden Slides collection:"^^xsd:string ;
+        ns0:citation-status "found"^^xsd:string
+      ], [
+        a ns0:Source ;
+        ns0:citation-note "Images of the Great Smoky Mountains (The Thompsons began their career together in the 1920s working in the family business founded by their father in 1902 known as Thompson Brothers Commercial Photographers. . . .They split the business in 1927, becoming two individual companies. . . .Around 1935, they reformed as Thompsons, Inc. Commercial Photographers. The company continues today as Thompson Photo Products.)"^^xsd:string ;
+        ns0:citation-source "Thompson Brothers digital photograph collection website, viewed May 23, 2018:"^^xsd:string, <http://dlc.lib.utk.edu/thompson/thompson_main.htm> ;
+        ns0:citation-status "found"^^xsd:string
+      ], [
+        a ns0:Source ;
+        ns0:citation-note "Description (Jim Thompson's photographic studio, located at 615 Lowry in Knoxville, Tennessee.)"^^xsd:string ;
+        ns0:citation-source "Jim Thompson Co. Photographic Studio, Images of East Tennessee digital collection, viewed May 23, 2018:"^^xsd:string, <https://digital.lib.utk.edu/collections/islandora/object/tenncities%3A142> ;
+        ns0:citation-status "found"^^xsd:string
+      ] ;
+      ns0:hasVariant [
+        a ns0:CorporateName, ns0:Variant ;
+        ns0:elementList ( _:genid7 ) ;
+        ns0:variantLabel "Thompson Co., Jim Thompson, Photographers"^^xsd:string
+      ], [
+        a ns0:CorporateName, ns0:Variant ;
+        ns0:elementList ( _:genid14 ) ;
+        ns0:variantLabel "Thompson Company"^^xsd:string
+      ], [
+        a ns0:CorporateName, ns0:Variant ;
+        ns0:elementList ( _:genid27 ) ;
+        ns0:variantLabel "Jim Thompson Co. Photographic Studio"^^xsd:string
+      ] ;
+      ns0:identifiesRWO <http://id.loc.gov/rwo/agents/no2018075078> ;
+      ns0:isMemberOfMADSCollection <http://id.loc.gov/authorities/names/collection_NamesAuthorizedHeadings>, <http://id.loc.gov/authorities/names/collection_LCNAF> ;
+      ns0:isMemberOfMADSScheme <http://id.loc.gov/authorities/names> ;
+      skos:altLabel "Thompson Co., Jim Thompson, Photographers"^^xsd:string, "Thompson Company"^^xsd:string, "Jim Thompson Co. Photographic Studio"^^xsd:string ;
+      skos:changeNote [
+        a <http://purl.org/vocab/changeset/schema#ChangeSet> ;
+        ns3:changeReason "new"^^xsd:string ;
+        ns3:createdDate "2018-06-04T00:00:00"^^xsd:dateTime ;
+        ns3:creatorName <http://id.loc.gov/vocabulary/organizations/tu> ;
+        ns3:subjectOfChange <http://id.loc.gov/authorities/names/no2018075078>
+      ], [
+        a ns3:ChangeSet ;
+        ns3:changeReason "revised"^^xsd:string ;
+        ns3:createdDate "2018-06-05T07:33:12"^^xsd:dateTime ;
+        ns3:creatorName <http://id.loc.gov/vocabulary/organizations/tu> ;
+        ns3:subjectOfChange <http://id.loc.gov/authorities/names/no2018075078>
+      ] ;
+      skos:exactMatch <http://viaf.org/viaf/sourceID/LC%7Cno2018075078#skos:Concept> ;
+      skos:inScheme <http://id.loc.gov/authorities/names> ;
+      skos:prefLabel "Jim Thompson Company"^^xsd:string ;
+      skos:semanticRelation <http://id.loc.gov/authorities/names/no2018075295>, <http://id.loc.gov/authorities/names/no2018075117> ;
+      skosxl:altLabel [
+        a skosxl:Label ;
+        skosxl:literalForm "Thompson Co., Jim Thompson, Photographers"^^xsd:string
+      ], [
+        a skosxl:Label ;
+        skosxl:literalForm "Thompson Company"^^xsd:string
+      ], [
+        a skosxl:Label ;
+        skosxl:literalForm "Jim Thompson Co. Photographic Studio"^^xsd:string
+      ] .
+
+    <http://id.loc.gov/authorities/names/no2018075295>
+      a ns0:CorporateName, ns0:Authority, skos:Concept ;
+      ns0:authoritativeLabel "Thompsons, Inc. Commercial Photographers"^^xsd:string ;
+      ns0:elementList ( _:genid8 ) ;
+      skos:prefLabel "Thompsons, Inc. Commercial Photographers"^^xsd:string .
+
+    <http://id.loc.gov/rwo/agents/no2018075078>
+      a ns0:RWO, <http://id.loc.gov/ontologies/bibframe/Organization>, foaf:Organization ;
+      ns0:associatedLocale [
+        a ns0:Geographic ;
+        rdfs:label "(naf) Knoxville (Tenn.)"^^xsd:string
+      ] ;
+      ns0:fieldOfActivity <http://id.loc.gov/authorities/subjects/sh85101206> ;
+      ns0:hasAffiliation [
+        a ns0:Affiliation ;
+        ns0:hasAffiliationAddress [
+          a ns0:Address ;
+          ns0:city "Knoxville"^^xsd:string ;
+          ns0:state "Tennessee"^^xsd:string ;
+          ns0:streetAddress "615 Lowry"^^xsd:string
+        ]
+      ] ;
+      rdfs:label "Jim Thompson Company"^^xsd:string .
+
+    <http://id.loc.gov/authorities/subjects/sh85101206>
+      a skos:Concept ;
+      ns0:authoritativeLabel "Photography"^^xsd:string .
+
+    _:genid2
+      a ns0:NameElement ;
+      ns0:elementValue "Thompson Brothers Commercial Photographers"^^xsd:string .
+
+    _:genid7
+      a ns0:NameElement ;
+      ns0:elementValue "Thompson Co., Jim Thompson, Photographers"^^xsd:string .
+
+    _:genid8
+      a ns0:NameElement ;
+      ns0:elementValue "Thompsons, Inc. Commercial Photographers"^^xsd:string .
+
+    _:genid14
+      a ns0:NameElement ;
+      ns0:elementValue "Thompson Company"^^xsd:string .
+
+    _:genid15
+      a ns0:NameElement ;
+      ns0:elementValue "Jim Thompson Company"^^xsd:string .
+
+    _:genid27
+      a ns0:NameElement ;
+      ns0:elementValue "Jim Thompson Co. Photographic Studio"^^xsd:string .
+
+If we followed the minted objects mapping, we'd have data like this:
+
+.. code-block:: turtle
+
+    @prefix fedoraObject: <http://[LocalFedoraRepository]/> .
+    @prefix rel: <http://id.loc.gov/vocabulary/relators/> .
+    @prefix owl: <https://www.w3.org/2002/07/owl#> .
+    @prefix foaf: <http://xmlns.com/foaf/0.1/> .
+    @prefix utknames: <http://[LocalTripleStore]/names/> .
+
+    <fedoraObject:tq/57/nr/06/tq57nr067>
+        rel:pht <utknames:1> .
+
+    <utknames:1>
+        a foaf:Organization ;
+        foaf:name "Jim Thompson Company" ;
+        owl:sameAs <http://id.loc.gov/authorities/names/no2018075078> .
