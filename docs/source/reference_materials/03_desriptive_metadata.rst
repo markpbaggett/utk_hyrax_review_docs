@@ -391,7 +391,7 @@ If we were to follow either the Direct Objects of Minted Objects mapping, our RD
 .. code-block:: turtle
 
     @prefix fedoraObject: <http://[LocalFedoraRepository]/> .
-    @prefix edm:rights: <http://www.europeana.eu/schemas/edm/> .
+    @prefix edm: <http://www.europeana.eu/schemas/edm/> .
 
     <fedoraObject:tq/57/nr/06/tq57nr067>
         edm:rights <http://rightsstatements.org/vocab/CNE/1.0/> .
