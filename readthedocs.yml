@@ -10,3 +10,5 @@ python:
   extra_requirements:
     - docs
 
+formats:
+    - pdf
