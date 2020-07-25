@@ -23,6 +23,7 @@ setup(
             "recommonmark >=0.5.0",
             "sphinx-bootstrap-theme >= 0.6.5",
             "sphinxemoji >= 0.1.6",
+            "sphinx-bernard-theme >= 0.1.12",
         ]
     },
     classifiers=[
