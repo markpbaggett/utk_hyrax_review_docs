@@ -10,7 +10,7 @@ MODS with the presence of URIS in `valueURI` and `xlink:href` URIs.
 While we've worked to make our data "linked-data ready," this part of our migration will be complex because we have our
 own practices that are different from other libraries.  This is because our needs are different and our metadata has been
 influence from local requirements and the requirements of metadata sharing agreements with things like the Digital
-Publice Library of America.
+Public Library of America.
 
 In this chapter I will focus on:
 
@@ -39,7 +39,7 @@ prior to moving to Hyrax:
 
     Hyrax does not ship with an external triple store.  If we need one, we will need to select one and install it.
 
-3. Modify the default metadata application profile to remove bad elements or one's that don't meet our needs
+3. Modify the default metadata application profile to remove bad elements or ones that don't meet our needs
 
     As you'll see in the next chapter, Hyrax's MAP is bad.  We need to modify the bad elements to be good base on our MAP
     and removed the good but unneeded metadata elements.
@@ -107,7 +107,7 @@ If we were to follow the direct mappings option, our RDF would look like this:
 
 .. image:: ../images/subject_direct.png
 
-While this may look lossy, remember that the each URI has it's own RDF properties that we can "look up".  For instance,
+While this may look lossy, remember that each URI has it's own RDF properties that we can "look up".  For instance,
 let's look at the URI for "Flowering trees":
 
 .. code-block:: turtle

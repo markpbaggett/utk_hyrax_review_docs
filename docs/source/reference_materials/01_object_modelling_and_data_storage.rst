@@ -120,7 +120,7 @@ The Turtle
 ==========
 
 We've looked at a visualization, but it this what's actually in Fedora? Yes. In Fedora 3.8, we have this concept of object, but that idea
-does not exist in a post Fedora 3.8 world. Instead, we have containers and binaries.  Below is turtle some turtle for
+does not exist in a post Fedora 3.8 world. Instead, we have containers and binaries.  Below is turtle to represent
 the objects in the visualization above.
 
 **PLEASE NOTE:** For your viewing pleasure, I've stripped away most descriptive metadata and other non structural metadata
