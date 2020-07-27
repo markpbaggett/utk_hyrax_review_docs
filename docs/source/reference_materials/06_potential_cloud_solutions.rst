@@ -53,3 +53,8 @@ service for running Hyku.  It is targeted at libraries that want to mostly run H
 be too limiting for our needs, Notch8 also offers a separate service where they help you run and manage your custom
 Hyku instance on you cloud hosting provider of choice.
 
+Cottage Labs
+------------
+
+`Cottage Labs <https://cottagelabs.com/>`_ is another popular service provider who is developing a cloud hosting
+service called `"Willow" <https://willow.cottagelabs.com>`_.
