@@ -17,7 +17,7 @@ h1{font-size:50px;margin:10px 0}
 
 .body{border-radius:3px;color:#525252;line-height:1.7}
 
-.logo,.logo-large{width:111px;height:70px;display:inline-block;text-indent:-99999px;background:url('img/logo_small.png');margin:20px 0 0}
+.logo,.logo-large{width:111px;height:46px;display:inline-block;text-indent:-99999px;background:url('img/logo_small.png');margin:20px 0 0}
 .logo-large{background:url('img/logo.png');width:450px;height:285px;}
 .ribbon{position: absolute;top:0;right:0;border:0;z-index:2000;}
 .ribbon a{background:url('img/fork-me.png');width:140px;height:140px;display:block;text-indent:-99999px;}
@@ -39,7 +39,7 @@ h1{font-size:50px;margin:10px 0}
 }
 
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    .logo{background:url('img/logo_small@2x.png');background-size:111px 70px;}
+    .logo{background:url('img/logo_small@2x.png');background-size:111px 46px;}
     .logo-large{background:url('img/logo@2x.png');background-size:450px 285px}
     .ribbon a{background:url('img/fork-me@2x.png');background-size:140px 140px}
 }
