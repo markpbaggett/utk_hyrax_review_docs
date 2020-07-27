@@ -53,6 +53,12 @@ service for running Hyku.  It is targeted at libraries that want to mostly run H
 be too limiting for our needs, Notch8 also offers a separate service where they help you run and manage your custom
 Hyku instance on you cloud hosting provider of choice.
 
+Ubiquity Press
+--------------
+
+Ubiquity Press is a provider of open publishing services and infrastructure for libraries and institutions built on
+Hyrax and Hyku. According to their `website <https://www.u-repo.io/>`_, they offer a cloud-hosting solution.
+
 Cottage Labs
 ------------
 
