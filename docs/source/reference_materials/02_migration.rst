@@ -144,15 +144,20 @@ But migration-utils is abandonware
 has received more than 62 commits (it only has 130 in total). This is mostly because of **OCFL** and helping institutions
 migrate from Fedora 2 or Fedora 3 to Fedora 6.
 
-So what might a Fedora object migrated from Fedora 3 to Fedora 4, 5, or 6 look like (hold
-`ModeShape <https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjw7ODMhoXqAhUuQjABHYkuAF0QFjAAegQIBBAB&url=https%3A%2F%2Fmodeshape.jboss.org%2F&usg=AOvVaw1kQsl-29WwZojhweuet2C1>`_
-/ `OCFL <https://ocfl.io/>`_ discussion and questions for later):
+So what might a Fedora object migrated from Fedora 3 to Fedora 4, 5, or 6 look like:
 
 .. image:: ../images/migration-utils_book.png
+
+This migration path would get us very close.  After doing this, we'd need to write scripting to add some basic relationships
+that Hyrax would expect based on:  PCDM and Hyrax.  These relationships would allow the Hyrax models to work with the
+containers stored in Fedora.  First, we'd need to add PCDM relationships to each container.  Then, we'd need to add
+Hydra::Works relationships: first the type for the book and then FileSets for each page.
 
 ============
 Another path
 ============
 
 If we were to decide that keeping versions or audit and administrative metadata was not important to us, we could pursue
-another path agnostic to Fedora.
+another path agnostic to Fedora based on BagIt.  We could export our objects with Islandora BagIt so that we had
+checksums for each object.  Then, when we imported each object, we'd need to ensure that the characterization of each
+file's checksum matched that in the BagIt manifest.
