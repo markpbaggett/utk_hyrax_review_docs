@@ -11,10 +11,11 @@ repository solution.  This investigation is driven by UT Libraries'
 `Next Generation Digital Repository Solution <https://drive.google.com/file/d/1nsqoQlfJN4Cn-RJxLUO1A0MFD-s-pQNr/view?usp=sharing>`_.
 
 
-Reference Materials for Final Demo
-----------------------------------
+Required Reference Materials
+----------------------------
 
-The final demo lists several required reference materials for submission.  This section includes those.
+The final product required that specific reference materials be released with the final demo.  This section includes
+all of those.
 
 .. toctree::
    :maxdepth: 1
@@ -22,8 +23,8 @@ The final demo lists several required reference materials for submission.  This 
 
    reference_materials/*
 
-Demo 1: Content Models, Metadata, and the Stack
------------------------------------------------
+Content Models, Metadata, and the Stack (Demo 1)
+------------------------------------------------
 
 This section contains all content related to Demo 1 on May 21, 2020.
 
@@ -33,8 +34,10 @@ This section contains all content related to Demo 1 on May 21, 2020.
 
    demo1/*
 
-Demo 2: Migration, Upload, and Batch Ingest
--------------------------------------------
+Migration, Upload, and Batch Ingest (Demo 2)
+--------------------------------------------
+
+This section contains all content related to Demo 2 on June 11, 2020.
 
 .. toctree::
    :maxdepth: 1
@@ -42,10 +45,10 @@ Demo 2: Migration, Upload, and Batch Ingest
 
    demo2/*
 
-Mark's Musings, Thoughts, and Other Ramblings
----------------------------------------------
+Notes and Other Thoughts
+------------------------
 
-This section contains my ramblings, thoughts in process, etc.
+This section contains musings, thoughts, and my notes for working through problems that occurred along the way.
 
 .. toctree::
    :maxdepth: 2
