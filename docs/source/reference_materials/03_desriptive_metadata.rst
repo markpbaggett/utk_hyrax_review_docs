@@ -436,8 +436,6 @@ Also, to truly show the scale of the available metadata we have with the URI, se
 
 .. figure:: ../images/cne.png
 
-    Click to Enlarge.
-
 =======================================
 mods:name/mods:valueURI/[mods:namePart]
 =======================================
