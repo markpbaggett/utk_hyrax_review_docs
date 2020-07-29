@@ -141,6 +141,95 @@ All workflows defined in config/workflows directory can be loaded using the foll
 This will load the workflow and create user roles. You will want to assign users/groups to the roles. You will be able
 to select the workflow for use in an admin_set.
 
+---------------
+A Real Scenario
+---------------
+
+While the workflow about is a good way to understand what's going on, it doesn't do much and isn't a great real world
+example.  Here is a workflow where a student would deposit works and the graduate school would review, request changes,
+approve, and publish.
+
+.. code-block:: json
+
+    {
+        "workflows": [
+            {
+                "name": "one_step_mediated_deposit",
+                "label": "One-step mediated deposit workflow",
+                "description": "A single-step workflow for mediated deposit in which all deposits must be approved by a reviewer. Reviewer may also send deposits back to the depositor.",
+                "allows_access_grant": false,
+                "actions": [
+                    {
+                        "name": "deposit",
+                        "from_states": [],
+                        "transition_to": "pending_review",
+                        "notifications": [
+                            {
+                                "notification_type": "email",
+                                "name": "Hyrax::Workflow::PendingReviewNotification",
+                                "to": ["approving"]
+                            }
+                        ],
+                        "methods": [
+                            "Hyrax::Workflow::GrantReadToDepositor",
+                            "Hyrax::Workflow::DeactivateObject"
+                        ]
+                    }, {
+                        "name": "request_changes",
+                        "from_states": [{"names": ["deposited", "pending_review"], "roles": ["approving"]}],
+                        "transition_to": "changes_required",
+                        "notifications": [
+                            {
+                                "notification_type": "email",
+                                "name": "Hyrax::Workflow::ChangesRequiredNotification",
+                                "to": ["approving"]
+                            }
+                        ],
+                        "methods": [
+                            "Hyrax::Workflow::DeactivateObject",
+                            "Hyrax::Workflow::GrantEditToDepositor"
+                        ]
+                    }, {
+                        "name": "approve",
+                        "from_states": [{"names": ["pending_review"], "roles": ["approving"]}],
+                        "transition_to": "deposited",
+                        "notifications": [
+                            {
+                                "notification_type": "email",
+                                "name": "Hyrax::Workflow::DepositedNotification",
+                                "to": ["approving"]
+                            }
+                        ],
+                        "methods": [
+                            "Hyrax::Workflow::GrantReadToDepositor",
+                            "Hyrax::Workflow::RevokeEditFromDepositor",
+                            "Hyrax::Workflow::ActivateObject"
+                        ]
+                    }, {
+                        "name": "request_review",
+                        "from_states": [{"names": ["changes_required"], "roles": ["depositing"]}],
+                        "transition_to": "pending_review",
+                        "notifications": [
+                            {
+                                "notification_type": "email",
+                                "name": "Hyrax::Workflow::PendingReviewNotification",
+                                "to": ["approving"]
+                            }
+                        ]
+                    }, {
+                        "name": "comment_only",
+                        "from_states": [
+                            { "names": ["pending_review", "deposited"], "roles": ["approving"] },
+                            { "names": ["changes_required"], "roles": ["depositing"] }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+
+
+
 ==========================
 Google Scholar Integration
 ==========================
