@@ -31,6 +31,12 @@ According to their website,
 During this investigation, I reached out to DCE to discuss our projects.  I was told that they were focused on getting
 Tenejo ready for Hyrax 3.0 and would not be able to take on new clients until 2021.
 
+===================
+Contact Information
+===================
+
+Contact: Mark Bussey (mark@curationexperts.com)
+
 Notch8
 ------
 
@@ -53,14 +59,36 @@ service for running Hyku.  It is targeted at libraries that want to mostly run H
 be too limiting for our needs, Notch8 also offers a separate service where they help you run and manage your custom
 Hyku instance on you cloud hosting provider of choice.
 
+===================
+Contact Information
+===================
+
+Contact: Kevin Kochanski (kevin@notch8.com)
+
+
 Ubiquity Press
 --------------
 
 Ubiquity Press is a provider of open publishing services and infrastructure for libraries and institutions built on
 Hyrax and Hyku. According to their `website <https://www.u-repo.io/>`_, they offer a cloud-hosting solution.
 
+An example of a multi-tenant installation of the platform is the Shared Research Repository hosted for the British Library. Ubiquity is also actively engaged in further enhancing the Hyku platform with the Advancing Hyku project.
+
+===================
+Contact Information
+===================
+
+Contact: Brian Hole (brian.hole@ubiquitypress.com)
+
+
 Cottage Labs
 ------------
 
 `Cottage Labs <https://cottagelabs.com/>`_ is another popular service provider who is developing a cloud hosting
 service called `"Willow" <https://willow.cottagelabs.com>`_.
+
+===================
+Contact Information
+===================
+
+Contact: Richard Jones (richard@cottagelabs.com)
