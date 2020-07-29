@@ -65,7 +65,8 @@ Designing Workflows
 ===================
 
 Workflows in Hyrax are incredibly dynamic and completely up to the institution. These workflows are a database driven
-implementation of `finite state machines <https://en.wikipedia.org/wiki/Finite-state_machine>`_
+implementation of `finite state machines <https://en.wikipedia.org/wiki/Finite-state_machine>`_ that are powered by
+the `Sipity gem <https://github.com/samvera-labs/sipity>`_.
 
 ---------------
 Getting Started
