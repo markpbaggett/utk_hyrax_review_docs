@@ -153,11 +153,21 @@ that Hyrax would expect based on:  PCDM and Hyrax.  These relationships would al
 containers stored in Fedora.  First, we'd need to add PCDM relationships to each container.  Then, we'd need to add
 Hydra::Works relationships: first the type for the book and then FileSets for each page.
 
-============
-Another path
-============
+=================
+Bulkrax and Bagit
+=================
 
 If we were to decide that keeping versions or audit and administrative metadata was not important to us, we could pursue
 another path agnostic to Fedora based on BagIt.  We could export our objects with Islandora BagIt so that we had
-checksums for each object.  Then, when we imported each object, we'd need to ensure that the characterization of each
-file's checksum matched that in the BagIt manifest.
+checksums for each object and each object bagged in a BagIt bag.
+
+Then, we could use `Bulkrax <https://github.com/samvera-labs/bulkrax/>`_ for importing.
+
+Bulkrax provides a number of importers including:
+
+* BagIt
+* OAI-PMH
+* CSV
+* XML
+
+Detailed instructions for how to migrate can be found `in the BulkRax documentation <https://github.com/samvera-labs/bulkrax/wiki>`_.
