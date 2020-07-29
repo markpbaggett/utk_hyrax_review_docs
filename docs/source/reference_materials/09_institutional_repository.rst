@@ -260,9 +260,6 @@ We can harvest GA stats for all of our objects into the local database, and use 
 into the Admin Statistics dashboard. So far this integration into the dashboard has not been done.
 
 To harvest stats for all your objects, you might use a rake task that runs Sufia::UserStatImporter which in turn is called by a cron job.
-Problems with Analytics
-
-Having a problem setting up Analytics. See Analytics-workaround-for-non-production-environments, which documents a workaround for one known issue.
 
 Institutions Using Hyrax as an Institutional Repository
 -------------------------------------------------------
